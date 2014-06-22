@@ -1,0 +1,12 @@
+It appears the key to tag based searching is the sql division set operator (which is not implemented).  A good introduction to the operator and how to implement it can be found here:
+
+https://www.simple-talk.com/sql/t-sql-programming/divided-we-stand-the-sql-of-relational-division/
+
+The following statement gets the number of tags that fit in the given set for each URI that has one or more matching tags:
+
+select URItags.uriID as uriIDs, count(uriID) as numberOfMatches  from URItags where value in ('location-Door','trip-wire') group by URItags.uriID;
+
+I believe that taking the intersection of such queries will provide the desired result for URI searching.  This method is vulnerable to duplicate tags for the same value, so it will be nessisary to ensure that tags for a given URI are unique (either in the database or the communication layer).
+
+It might be more efficient to winnow the results before doing the intersection, doing an operation such as this:
+select uriIDs from (select URItags.uriID as uriIDs, count(uriID) as numberOfMatches  from URItags where value not in ('location-Door','trip-wire') group by URItags.uriID) where numberOfMatches = 2;

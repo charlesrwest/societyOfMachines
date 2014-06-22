@@ -1,0 +1,21 @@
+message localURI
+{
+required string resouceName = 1;  //The name of the resource or subject this URI represents
+required string IPCPath =  2;  //The connection information required for a local process to connect to this stream
+optional uint64 originatingProcessID = 3;  //Process ID to be used by the coordinator to detect if the owning process has shut down (and thereby purge its associated information)
+repeated string tags = 4;   //The tags that describe this resource, such as "Audio Stream"
+repeated integerKeyValuePair integerPairs = 5;  //Key value pairs that describe attributes of this resource, such as "Samples per second, 5"
+repeated doubleKeyValuePair doublePairs = 6;  //Key value pairs that describe attributes of this resources, such as "Max speed (m/s), 5.5"
+}
+
+message integerKeyValuePair
+{
+required string key = 1;
+required int32 value = 2;
+}
+
+message doubleKeyValuePair
+{
+required string key = 1;
+required double value = 2;
+}

@@ -1,0 +1,38 @@
+message localURIQuery
+{
+repeated string requiredTags = 1;      //The tags a URI must have
+repeated string forbiddenTags = 2;     //The tags a URI must not have
+repeated requiredIntegerCondition integerConditions = 3; //Supports >, <, <=, >= and == operators
+repeated requiredDoubleCondition doubleConditions = 4;  //Supports >, <, <=, >= and == operators
+optional uint32 maximumNumberOfResults = 5 [default = 2000000000]; //The maximum numbers of URIs that the querier would like returned, defaults to 2 billion
+}
+
+enum comparisonOperator
+{
+LESS_THAN = 0;
+LESS_THAN_OR_EQUAL = 1;
+GREATER_THAN = 2;
+GREATER_THAN_OR_EQUAL = 3;
+EQUAL = 4;
+NOT_EQUAL = 5;
+}
+
+
+//This represents a constraint on the URIs, such that the field is compared to the numeric value
+message requiredIntegerCondition
+{
+required string field = 1; //The column to compare to
+required comparisonOperator comparison = 2; //The comparison to compare "field LESS_THAN 5"
+required int32 value = 3; //The value to compare to
+optional bool comparisonResultOnNULL = 4 [default = false]; // return true or false when field isn't there
+}
+
+//This represents a constraint on the URIs, such that the field is compared to the numeric value
+message requiredDoubleCondition
+{
+required string field = 1; //The column to compare to
+required comparisonOperator comparison = 2; //The comparison to compare "field LESS_THAN 5.0"
+required double value = 3; //The value to compare to
+optional bool comparisonResultOnNULL = 4 [default = false]; // return true or false when field isn't there
+}
+
