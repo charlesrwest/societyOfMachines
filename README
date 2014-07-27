@@ -1,3 +1,5 @@
+For details as to what this library is eventually intended to do, take a look at the societyOfMachines.pdf
+
 Compilation:
 Before you attempt to compile the IPC version of the library and examples, please make sure you have the proper libraries installed.  This library is currently only tested on ubuntu, so that is what this focuses on.
 
