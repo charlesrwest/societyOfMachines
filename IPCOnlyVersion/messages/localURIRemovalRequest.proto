@@ -1,0 +1,13 @@
+import "messageContainer.proto";
+
+message localURIRemovalRequest
+{
+required string resourceName = 1;  //The name of the resource or subject to be deleted
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional localURIRemovalRequest aLocalURIRemovalRequest = 11;
+}
+
+}

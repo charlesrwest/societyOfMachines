@@ -1,0 +1,62 @@
+Compilation:
+Before you attempt to compile the IPC version of the library and examples, please make sure you have the proper libraries installed.  This library is currently only tested on ubuntu, so that is what this focuses on.
+
+The required libraries are Sqlite3, Zero Messaging Queue (ZMQ) and Google's libprotobuf.  On Ubuntu, you can install these libraries by installing the following packages:
+
+Libprotobuf:
+libprotobuf-dev
+
+ZMQ:
+libzmq3-dev
+
+Sqlite3:
+libsqlite3-dev
+
+GCC and CMake are required build tools, so it might be a good idea to run:
+
+sudo apt-get install build-essential cmake
+
+Once the prerequisites are out of the way, you can build the library and examples by moving to the IPCOnlyVersion directory and running the following commands:
+
+cmake ./
+make
+
+The build is a little slow due to some nonoptimal things that need to be fixed, but that will be fixed soon.  Once the build is completed, there should be test cases that you can use as examples in the ./IPCOnlyVersion/src/testCases folder.  As said before, the build process is not currently optimal, so it is a little complicated to used the library for a new project on its own.  For now, copy the testDatabase example then change the executable name in the CMakeLists.txt file to something different, delete the CMakeFiles folder and cmake_install.cmake then add add_subdirectory(./testCases/yourProjectFolder) to the CMakeLists.txt file in IPCOnlyVersion/src .  Once that is done, calling the top level cmake/build will build your project too.  For less hassle, just modify one of the examples.
+________________________________________________________________________
+
+
+If you are interested in trying out what works so far of the Society of Machines library, take a look in the IPCOnlyVersion folder.  It contains a reasonably function version of the library that just does communication between processes on one machine.  The library allows streams and repliers to be published with tag based descriptors and subscriptions to be done based on those descriptions.
+
+There is a lot of complexity involved in getting even that much to work well.  There are a lot of source files and headers in the library code directory, but there are only 8 major headers/classes that a user will have to work with.  These are as follows:
+
+./messages/localURI.pb.h:
+This header is generated from a libprotobuf template and is used to describe a set of tags and key value pairs used to describe a publisher or replier (and possibly other things in the future).  It makes a "localURI" class that is created empty and then can be populated with tags and key value pairs.  Populated URI classes are used to create publishers and repliers, as they define the tags and key value pairs to be associated with them.  The resourcename field must be unique across the database or the object attempting to register will throw an error.  Examples of working with URIs be found in the testCases folder.  As the library moves forward, more examples will be created and they may be wrapped with a more user friendly class. 
+
+./messages/localURIQuery.pb.h:
+This header is generated from a libprotobuf template and is used to describe the criteria for finding suitable publishers and repliers.  It has conditions to match each of the URI tag and key/value characteristics.  A more comprehensive description will be published later, but for now basic usage can be seen in the testCases.
+
+./cppzmq-master/zmq.hpp:
+This header provides a c++ binding to the popular ZMQ network library.  Several classes from it are used internally, but only one is exposed to the user.  This is the zmq::message_t class, which represents a ZMQ message.  zmq::message_t classes are used as containers when receiving a message and optionally when sending one.  The important thing to remeber is that the message object must have rebuild between each time it is set.  For example, if you are using one as a buffer to receive messages, you must call rebuild on it between each time a message is received.  Since receiving is a fairly fundamental operation, there are many examples in the testCases folder.
+
+./src/libraryCode/localURIEngine.hpp:
+From a user standpoint, there are two things that are important about this class.  
+1. Call localURIEngine::startEngine(directoryIncluding/) before you use any of the Society of Machine functions.  It should be called with the same directory in every process that you want to be able to communicate, as that is where it will be making the named pipes that ZMQ uses for interprocess communication.
+
+2. You can search for publisher and replier URIs using localURIEngine::getPublishers() and localURIEngine::getRepliers().  Both of these functions are threadsafe.
+
+For a more in-depth view: This class declares a singleton called localURIEngine that is used as a proxy to coordinate with the seperate thread that is running the database that drives the tag based searching.  Each time a URI is registered, removed or searched for, a request is sent to the localURIEngine proxy server.  The proxy server then negotiates with the database thread to try to fufill the request.  This allows for all of the calls that a user should be interacting with to be threadsafe and will eventually allow URIs to be registered with soft state (with the proxy refreshing them every so often).
+
+./src/libraryCode/localStreamPublisher.hpp:
+This header describes the localStreamPublisher class.  It has to be initialized with a URI so that it can register and be searchable.  Once that is done, you can just call publish with your zmq::message_t and it will be sent to all of the requesters that have subscribed.
+
+./src/libraryCode/localStreamSubscriber.hpp:
+This header describes the localStreamSubscriber class, which is the counterpart to the localStreamPublisher class.  It is initialized empty, but then you can call subscribe on one or more URIs or resourcenames.  It will then return messages that the publishers it has been subscribed to publish when receiveMessage is called.  You can find publishers to subscribe to using the static method localURIEngine::getPublishers().
+
+./src/libraryCode/localReplier.hpp:
+This class registers a replier with the URI that it is given.  Once that is completed, it can block to wait for messages from requesters using getRequest.  Once it receives a message (unless it is a multipart message, in which case it should receive all of the parts first), it has to send a reply (using sendReply) before it can listen again.
+
+./src/libraryCode/localRequester.hpp:
+This header describes the localRequester class, which acts as the counterpart to the localReplier.  It is initialized with either a resource name or a localURI describing a requester, which it then connects to (You can find publishers to subscribe to using the static method localURIEngine::getRepliers()).  Once the initialization is finished, a request can be sent to the replier using sendRequest.  The requester must then retrieve the reply (using getReply) before sending more messages (unless it was sending a multipart message).
+
+
+

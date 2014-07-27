@@ -126,21 +126,28 @@ void protobuf_AddDesc_localURI_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_messageContainer_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\016localURI.proto\"\263\001\n\010localURI\022\024\n\014resourc"
-    "eName\030\001 \002(\t\022\017\n\007IPCPath\030\002 \002(\t\022\034\n\024originat"
-    "ingProcessID\030\003 \001(\004\022\014\n\004tags\030\004 \003(\t\022*\n\014inte"
-    "gerPairs\030\005 \003(\0132\024.integerKeyValuePair\022(\n\013"
-    "doublePairs\030\006 \003(\0132\023.doubleKeyValuePair\"1"
-    "\n\023integerKeyValuePair\022\013\n\003key\030\001 \002(\t\022\r\n\005va"
-    "lue\030\002 \002(\005\"0\n\022doubleKeyValuePair\022\013\n\003key\030\001"
-    " \002(\t\022\r\n\005value\030\002 \002(\001", 299);
+    "\n\016localURI.proto\032\026messageContainer.proto"
+    "\"\344\001\n\010localURI\022\024\n\014resourceName\030\001 \002(\t\022\017\n\007I"
+    "PCPath\030\002 \002(\t\022\034\n\024originatingProcessID\030\003 \001"
+    "(\004\022\014\n\004tags\030\004 \003(\t\022*\n\014integerPairs\030\005 \003(\0132\024"
+    ".integerKeyValuePair\022(\n\013doublePairs\030\006 \003("
+    "\0132\023.doubleKeyValuePair2/\n\tlocalURIs\022\021.me"
+    "ssageContainer\030\n \003(\0132\t.localURI\"1\n\023integ"
+    "erKeyValuePair\022\013\n\003key\030\001 \002(\t\022\r\n\005value\030\002 \002"
+    "(\005\"0\n\022doubleKeyValuePair\022\013\n\003key\030\001 \002(\t\022\r\n"
+    "\005value\030\002 \002(\001", 372);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "localURI.proto", &protobuf_RegisterTypes);
   localURI::default_instance_ = new localURI();
   integerKeyValuePair::default_instance_ = new integerKeyValuePair();
   doubleKeyValuePair::default_instance_ = new doubleKeyValuePair();
   localURI::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::messageContainer::default_instance(),
+    10, 11, true, false,
+    &::localURI::default_instance());
   integerKeyValuePair::default_instance_->InitAsDefaultInstance();
   doubleKeyValuePair::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_localURI_2eproto);
@@ -164,6 +171,12 @@ const int localURI::kIntegerPairsFieldNumber;
 const int localURI::kDoublePairsFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int localURI::kLocalURIsFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::messageContainer,
+    ::google::protobuf::internal::RepeatedMessageTypeTraits< ::localURI >, 11, false >
+  localURI::localURIs(kLocalURIsFieldNumber, ::localURI::default_instance());
 localURI::localURI()
   : ::google::protobuf::Message() {
   SharedCtor();

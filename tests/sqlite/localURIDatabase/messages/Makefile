@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase
+CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase
+CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/CMakeFiles /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/messages/CMakeFiles/progress.marks
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/CMakeFiles 0
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/CMakeFiles /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/messages/CMakeFiles/progress.marks
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/clean
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,22 +85,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/preinstall
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/preinstall
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 messages/CMakeFiles/messages.dir/rule:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/CMakeFiles/messages.dir/rule
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f CMakeFiles/Makefile2 messages/CMakeFiles/messages.dir/rule
 .PHONY : messages/CMakeFiles/messages.dir/rule
 
 # Convenience name for target.
@@ -109,7 +109,7 @@ messages: messages/CMakeFiles/messages.dir/rule
 
 # fast build rule for target.
 messages/fast:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/build
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/build
 .PHONY : messages/fast
 
 localURI.pb.o: localURI.pb.cc.o
@@ -117,7 +117,7 @@ localURI.pb.o: localURI.pb.cc.o
 
 # target to build an object file
 localURI.pb.cc.o:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.o
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.o
 .PHONY : localURI.pb.cc.o
 
 localURI.pb.i: localURI.pb.cc.i
@@ -125,7 +125,7 @@ localURI.pb.i: localURI.pb.cc.i
 
 # target to preprocess a source file
 localURI.pb.cc.i:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.i
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.i
 .PHONY : localURI.pb.cc.i
 
 localURI.pb.s: localURI.pb.cc.s
@@ -133,7 +133,7 @@ localURI.pb.s: localURI.pb.cc.s
 
 # target to generate assembly for a file
 localURI.pb.cc.s:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.s
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURI.pb.cc.s
 .PHONY : localURI.pb.cc.s
 
 localURIQuery.pb.o: localURIQuery.pb.cc.o
@@ -141,7 +141,7 @@ localURIQuery.pb.o: localURIQuery.pb.cc.o
 
 # target to build an object file
 localURIQuery.pb.cc.o:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.o
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.o
 .PHONY : localURIQuery.pb.cc.o
 
 localURIQuery.pb.i: localURIQuery.pb.cc.i
@@ -149,7 +149,7 @@ localURIQuery.pb.i: localURIQuery.pb.cc.i
 
 # target to preprocess a source file
 localURIQuery.pb.cc.i:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.i
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.i
 .PHONY : localURIQuery.pb.cc.i
 
 localURIQuery.pb.s: localURIQuery.pb.cc.s
@@ -157,8 +157,80 @@ localURIQuery.pb.s: localURIQuery.pb.cc.s
 
 # target to generate assembly for a file
 localURIQuery.pb.cc.s:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.s
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIQuery.pb.cc.s
 .PHONY : localURIQuery.pb.cc.s
+
+localURIRemovalRequest.pb.o: localURIRemovalRequest.pb.cc.o
+.PHONY : localURIRemovalRequest.pb.o
+
+# target to build an object file
+localURIRemovalRequest.pb.cc.o:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIRemovalRequest.pb.cc.o
+.PHONY : localURIRemovalRequest.pb.cc.o
+
+localURIRemovalRequest.pb.i: localURIRemovalRequest.pb.cc.i
+.PHONY : localURIRemovalRequest.pb.i
+
+# target to preprocess a source file
+localURIRemovalRequest.pb.cc.i:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIRemovalRequest.pb.cc.i
+.PHONY : localURIRemovalRequest.pb.cc.i
+
+localURIRemovalRequest.pb.s: localURIRemovalRequest.pb.cc.s
+.PHONY : localURIRemovalRequest.pb.s
+
+# target to generate assembly for a file
+localURIRemovalRequest.pb.cc.s:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIRemovalRequest.pb.cc.s
+.PHONY : localURIRemovalRequest.pb.cc.s
+
+localURIReplyHeader.pb.o: localURIReplyHeader.pb.cc.o
+.PHONY : localURIReplyHeader.pb.o
+
+# target to build an object file
+localURIReplyHeader.pb.cc.o:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIReplyHeader.pb.cc.o
+.PHONY : localURIReplyHeader.pb.cc.o
+
+localURIReplyHeader.pb.i: localURIReplyHeader.pb.cc.i
+.PHONY : localURIReplyHeader.pb.i
+
+# target to preprocess a source file
+localURIReplyHeader.pb.cc.i:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIReplyHeader.pb.cc.i
+.PHONY : localURIReplyHeader.pb.cc.i
+
+localURIReplyHeader.pb.s: localURIReplyHeader.pb.cc.s
+.PHONY : localURIReplyHeader.pb.s
+
+# target to generate assembly for a file
+localURIReplyHeader.pb.cc.s:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/localURIReplyHeader.pb.cc.s
+.PHONY : localURIReplyHeader.pb.cc.s
+
+messageContainer.pb.o: messageContainer.pb.cc.o
+.PHONY : messageContainer.pb.o
+
+# target to build an object file
+messageContainer.pb.cc.o:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/messageContainer.pb.cc.o
+.PHONY : messageContainer.pb.cc.o
+
+messageContainer.pb.i: messageContainer.pb.cc.i
+.PHONY : messageContainer.pb.i
+
+# target to preprocess a source file
+messageContainer.pb.cc.i:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/messageContainer.pb.cc.i
+.PHONY : messageContainer.pb.cc.i
+
+messageContainer.pb.s: messageContainer.pb.cc.s
+.PHONY : messageContainer.pb.s
+
+# target to generate assembly for a file
+messageContainer.pb.cc.s:
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(MAKE) -f messages/CMakeFiles/messages.dir/build.make messages/CMakeFiles/messages.dir/messageContainer.pb.cc.s
+.PHONY : messageContainer.pb.cc.s
 
 # Help Target
 help:
@@ -175,6 +247,15 @@ help:
 	@echo "... localURIQuery.pb.o"
 	@echo "... localURIQuery.pb.i"
 	@echo "... localURIQuery.pb.s"
+	@echo "... localURIRemovalRequest.pb.o"
+	@echo "... localURIRemovalRequest.pb.i"
+	@echo "... localURIRemovalRequest.pb.s"
+	@echo "... localURIReplyHeader.pb.o"
+	@echo "... localURIReplyHeader.pb.i"
+	@echo "... localURIReplyHeader.pb.s"
+	@echo "... messageContainer.pb.o"
+	@echo "... messageContainer.pb.i"
+	@echo "... messageContainer.pb.s"
 .PHONY : help
 
 
@@ -186,6 +267,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -1,0 +1,19 @@
+import "messageContainer.proto";
+
+message localURIReply
+{
+required replyType value = 1; //The status of the processing of the request
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional localURIReply aLocalURIReply = 13;
+}
+}
+
+enum replyType
+{
+REQUEST_SUCCEEDED = 0;
+REQUEST_FAILED = 1;
+}
+

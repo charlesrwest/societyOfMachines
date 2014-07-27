@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake
+CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake
+CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake/CMakeFiles /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake/addPerson/CMakeFiles/progress.marks
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake/CMakeFiles 0
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake/CMakeFiles /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake/addPerson/CMakeFiles/progress.marks
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/clean
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,22 +85,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/preinstall
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/preinstall
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 addPerson/CMakeFiles/addPerson.dir/rule:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/CMakeFiles/addPerson.dir/rule
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f CMakeFiles/Makefile2 addPerson/CMakeFiles/addPerson.dir/rule
 .PHONY : addPerson/CMakeFiles/addPerson.dir/rule
 
 # Convenience name for target.
@@ -109,7 +109,7 @@ addPerson: addPerson/CMakeFiles/addPerson.dir/rule
 
 # fast build rule for target.
 addPerson/fast:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/build
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/build
 .PHONY : addPerson/fast
 
 add_person.o: add_person.cpp.o
@@ -117,7 +117,7 @@ add_person.o: add_person.cpp.o
 
 # target to build an object file
 add_person.cpp.o:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.o
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.o
 .PHONY : add_person.cpp.o
 
 add_person.i: add_person.cpp.i
@@ -125,7 +125,7 @@ add_person.i: add_person.cpp.i
 
 # target to preprocess a source file
 add_person.cpp.i:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.i
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.i
 .PHONY : add_person.cpp.i
 
 add_person.s: add_person.cpp.s
@@ -133,7 +133,7 @@ add_person.s: add_person.cpp.s
 
 # target to generate assembly for a file
 add_person.cpp.s:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.s
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(MAKE) -f addPerson/CMakeFiles/addPerson.dir/build.make addPerson/CMakeFiles/addPerson.dir/add_person.cpp.s
 .PHONY : add_person.cpp.s
 
 # Help Target
@@ -159,6 +159,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/libprotobuf/compilationWithCMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

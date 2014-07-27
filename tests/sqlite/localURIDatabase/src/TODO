@@ -1,0 +1,11 @@
+Make documentation
+
+Upload to github
+
+Convert the library to use TCP/IP ZMQ sockets with loopback rather than using IPC (for greater portability).
+
+Make error handling consistent across all source files
+
+Convert the library to maintain URIs using soft state rather than process scanning (for greater portability and extension).
+
+Generate Doxygen documentation

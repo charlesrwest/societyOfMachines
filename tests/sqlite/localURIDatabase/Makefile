@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase
+CMAKE_SOURCE_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase
+CMAKE_BINARY_DIR = /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,9 +69,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/CMakeFiles /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/CMakeFiles /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/armyOfRobots/tests/sqlite/localURIDatabase/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hewhosurvives/c++/randomProjects/societyOfMachines/tests/sqlite/localURIDatabase/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -112,17 +112,82 @@ messages/fast:
 .PHONY : messages/fast
 
 #=============================================================================
-# Target rules for targets named localURIDatabase
+# Target rules for targets named testDatabase
 
 # Build rule for target.
-localURIDatabase: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 localURIDatabase
-.PHONY : localURIDatabase
+testDatabase: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testDatabase
+.PHONY : testDatabase
 
 # fast build rule for target.
-localURIDatabase/fast:
-	$(MAKE) -f src/CMakeFiles/localURIDatabase.dir/build.make src/CMakeFiles/localURIDatabase.dir/build
-.PHONY : localURIDatabase/fast
+testDatabase/fast:
+	$(MAKE) -f src/testCode/testDatabase/CMakeFiles/testDatabase.dir/build.make src/testCode/testDatabase/CMakeFiles/testDatabase.dir/build
+.PHONY : testDatabase/fast
+
+#=============================================================================
+# Target rules for targets named testPubSubURISearching
+
+# Build rule for target.
+testPubSubURISearching: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testPubSubURISearching
+.PHONY : testPubSubURISearching
+
+# fast build rule for target.
+testPubSubURISearching/fast:
+	$(MAKE) -f src/testCode/testPubSubURISearching/CMakeFiles/testPubSubURISearching.dir/build.make src/testCode/testPubSubURISearching/CMakeFiles/testPubSubURISearching.dir/build
+.PHONY : testPubSubURISearching/fast
+
+#=============================================================================
+# Target rules for targets named testPubSubPublisher
+
+# Build rule for target.
+testPubSubPublisher: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testPubSubPublisher
+.PHONY : testPubSubPublisher
+
+# fast build rule for target.
+testPubSubPublisher/fast:
+	$(MAKE) -f src/testCode/testPubSub/publisherProcess/CMakeFiles/testPubSubPublisher.dir/build.make src/testCode/testPubSub/publisherProcess/CMakeFiles/testPubSubPublisher.dir/build
+.PHONY : testPubSubPublisher/fast
+
+#=============================================================================
+# Target rules for targets named testPubSubSubscriber
+
+# Build rule for target.
+testPubSubSubscriber: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testPubSubSubscriber
+.PHONY : testPubSubSubscriber
+
+# fast build rule for target.
+testPubSubSubscriber/fast:
+	$(MAKE) -f src/testCode/testPubSub/subscriberProcess/CMakeFiles/testPubSubSubscriber.dir/build.make src/testCode/testPubSub/subscriberProcess/CMakeFiles/testPubSubSubscriber.dir/build
+.PHONY : testPubSubSubscriber/fast
+
+#=============================================================================
+# Target rules for targets named testRequestReplierReplier
+
+# Build rule for target.
+testRequestReplierReplier: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testRequestReplierReplier
+.PHONY : testRequestReplierReplier
+
+# fast build rule for target.
+testRequestReplierReplier/fast:
+	$(MAKE) -f src/testCode/testRequestReply/replierProcess/CMakeFiles/testRequestReplierReplier.dir/build.make src/testCode/testRequestReply/replierProcess/CMakeFiles/testRequestReplierReplier.dir/build
+.PHONY : testRequestReplierReplier/fast
+
+#=============================================================================
+# Target rules for targets named testRequestReplierRequester
+
+# Build rule for target.
+testRequestReplierRequester: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testRequestReplierRequester
+.PHONY : testRequestReplierRequester
+
+# fast build rule for target.
+testRequestReplierRequester/fast:
+	$(MAKE) -f src/testCode/testRequestReply/requesterProcess/CMakeFiles/testRequestReplierRequester.dir/build.make src/testCode/testRequestReply/requesterProcess/CMakeFiles/testRequestReplierRequester.dir/build
+.PHONY : testRequestReplierRequester/fast
 
 # Help Target
 help:
@@ -133,7 +198,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... messages"
-	@echo "... localURIDatabase"
+	@echo "... testDatabase"
+	@echo "... testPubSubURISearching"
+	@echo "... testPubSubPublisher"
+	@echo "... testPubSubSubscriber"
+	@echo "... testRequestReplierReplier"
+	@echo "... testRequestReplierRequester"
 .PHONY : help
 
 

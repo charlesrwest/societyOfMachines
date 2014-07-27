@@ -24,6 +24,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "messageContainer.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Internal implementation detail -- do not call these.
@@ -162,6 +163,10 @@ class localURI : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::doubleKeyValuePair >*
       mutable_doublepairs();
 
+  static const int kLocalURIsFieldNumber = 10;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::messageContainer,
+      ::google::protobuf::internal::RepeatedMessageTypeTraits< ::localURI >, 11, false >
+    localURIs;
   // @@protoc_insertion_point(class_scope:localURI)
  private:
   inline void set_has_resourcename();

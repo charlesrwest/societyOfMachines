@@ -131,30 +131,37 @@ void protobuf_AddDesc_localURIQuery_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_messageContainer_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\023localURIQuery.proto\"\322\001\n\rlocalURIQuery\022"
-    "\024\n\014requiredTags\030\001 \003(\t\022\025\n\rforbiddenTags\030\002"
-    " \003(\t\0224\n\021integerConditions\030\003 \003(\0132\031.requir"
-    "edIntegerCondition\0222\n\020doubleConditions\030\004"
-    " \003(\0132\030.requiredDoubleCondition\022*\n\026maximu"
-    "mNumberOfResults\030\005 \001(\r:\n2000000000\"\210\001\n\030r"
-    "equiredIntegerCondition\022\r\n\005field\030\001 \002(\t\022\'"
-    "\n\ncomparison\030\002 \002(\0162\023.comparisonOperator\022"
-    "\r\n\005value\030\003 \002(\005\022%\n\026comparisonResultOnNULL"
-    "\030\004 \001(\010:\005false\"\207\001\n\027requiredDoubleConditio"
-    "n\022\r\n\005field\030\001 \002(\t\022\'\n\ncomparison\030\002 \002(\0162\023.c"
-    "omparisonOperator\022\r\n\005value\030\003 \002(\001\022%\n\026comp"
-    "arisonResultOnNULL\030\004 \001(\010:\005false*\202\001\n\022comp"
-    "arisonOperator\022\r\n\tLESS_THAN\020\000\022\026\n\022LESS_TH"
-    "AN_OR_EQUAL\020\001\022\020\n\014GREATER_THAN\020\002\022\031\n\025GREAT"
-    "ER_THAN_OR_EQUAL\020\003\022\t\n\005EQUAL\020\004\022\r\n\tNOT_EQU"
-    "AL\020\005", 644);
+    "\n\023localURIQuery.proto\032\026messageContainer."
+    "proto\"\215\002\n\rlocalURIQuery\022\024\n\014requiredTags\030"
+    "\001 \003(\t\022\025\n\rforbiddenTags\030\002 \003(\t\0224\n\021integerC"
+    "onditions\030\003 \003(\0132\031.requiredIntegerConditi"
+    "on\0222\n\020doubleConditions\030\004 \003(\0132\030.requiredD"
+    "oubleCondition\022*\n\026maximumNumberOfResults"
+    "\030\005 \001(\r:\n200000000029\n\016aLocalURIQuery\022\021.m"
+    "essageContainer\030\014 \001(\0132\016.localURIQuery\"\210\001"
+    "\n\030requiredIntegerCondition\022\r\n\005field\030\001 \002("
+    "\t\022\'\n\ncomparison\030\002 \002(\0162\023.comparisonOperat"
+    "or\022\r\n\005value\030\003 \002(\005\022%\n\026comparisonResultOnN"
+    "ULL\030\004 \001(\010:\005false\"\207\001\n\027requiredDoubleCondi"
+    "tion\022\r\n\005field\030\001 \002(\t\022\'\n\ncomparison\030\002 \002(\0162"
+    "\023.comparisonOperator\022\r\n\005value\030\003 \002(\001\022%\n\026c"
+    "omparisonResultOnNULL\030\004 \001(\010:\005false*\202\001\n\022c"
+    "omparisonOperator\022\r\n\tLESS_THAN\020\000\022\026\n\022LESS"
+    "_THAN_OR_EQUAL\020\001\022\020\n\014GREATER_THAN\020\002\022\031\n\025GR"
+    "EATER_THAN_OR_EQUAL\020\003\022\t\n\005EQUAL\020\004\022\r\n\tNOT_"
+    "EQUAL\020\005", 727);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "localURIQuery.proto", &protobuf_RegisterTypes);
   localURIQuery::default_instance_ = new localURIQuery();
   requiredIntegerCondition::default_instance_ = new requiredIntegerCondition();
   requiredDoubleCondition::default_instance_ = new requiredDoubleCondition();
   localURIQuery::default_instance_->InitAsDefaultInstance();
+  ::google::protobuf::internal::ExtensionSet::RegisterMessageExtension(
+    &::messageContainer::default_instance(),
+    12, 11, false, false,
+    &::localURIQuery::default_instance());
   requiredIntegerCondition::default_instance_->InitAsDefaultInstance();
   requiredDoubleCondition::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_localURIQuery_2eproto);
@@ -195,6 +202,12 @@ const int localURIQuery::kDoubleConditionsFieldNumber;
 const int localURIQuery::kMaximumNumberOfResultsFieldNumber;
 #endif  // !_MSC_VER
 
+#ifndef _MSC_VER
+const int localURIQuery::kALocalURIQueryFieldNumber;
+#endif
+::google::protobuf::internal::ExtensionIdentifier< ::messageContainer,
+    ::google::protobuf::internal::MessageTypeTraits< ::localURIQuery >, 11, false >
+  localURIQuery::aLocalURIQuery(kALocalURIQueryFieldNumber, ::localURIQuery::default_instance());
 localURIQuery::localURIQuery()
   : ::google::protobuf::Message() {
   SharedCtor();

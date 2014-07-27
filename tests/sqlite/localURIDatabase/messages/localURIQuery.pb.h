@@ -25,6 +25,7 @@
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "messageContainer.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Internal implementation detail -- do not call these.
@@ -178,6 +179,10 @@ class localURIQuery : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 maximumnumberofresults() const;
   inline void set_maximumnumberofresults(::google::protobuf::uint32 value);
 
+  static const int kALocalURIQueryFieldNumber = 12;
+  static ::google::protobuf::internal::ExtensionIdentifier< ::messageContainer,
+      ::google::protobuf::internal::MessageTypeTraits< ::localURIQuery >, 11, false >
+    aLocalURIQuery;
   // @@protoc_insertion_point(class_scope:localURIQuery)
  private:
   inline void set_has_maximumnumberofresults();

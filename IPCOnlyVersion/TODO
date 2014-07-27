@@ -1,0 +1,17 @@
+Make documentation
+
+Upload to github
+
+Make the SOM library build a static library that the test cases link to, rather than rebuilding the source for each test case
+
+Disable copy and empty constructors on the public classes.
+
+Convert the library to use TCP/IP ZMQ sockets with loopback rather than using IPC (for greater portability).
+
+Make error handling consistent across all source files
+
+Convert the library to maintain URIs using soft state rather than process scanning (for greater portability and extension).
+
+Generate Doxygen documentation
+
+
