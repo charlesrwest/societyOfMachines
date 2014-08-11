@@ -6,7 +6,7 @@ Before you attempt to compile the IPC version of the library and examples, pleas
 The required libraries are Sqlite3, Zero Messaging Queue (ZMQ) and Google's libprotobuf.  On Ubuntu, you can install these libraries by installing the following packages:
 
 Libprotobuf:
-libprotobuf-dev
+libprotobuf-dev protobuf-compiler
 
 ZMQ:
 libzmq3-dev
