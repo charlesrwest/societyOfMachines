@@ -1,0 +1,17 @@
+import "messageContainer.proto";
+
+//15
+
+message requestClosestKnownPredecessorReply
+{
+required string targetChordID = 1;
+optional string senderAddress = 2; //The UDP address of the sender, set by datagram router after receiving the message
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional requestClosestKnownPredecessorReply aRequestClosestKnownPredecessorReply = 15;
+}
+}
+
+

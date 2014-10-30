@@ -1,0 +1,15 @@
+import "messageContainer.proto";
+
+//12
+
+message stabilizationMessage
+{
+required string messageSenderChordID = 1;
+optional string senderAddress = 2; //The UDP address of the sender, set by datagram router after receiving the message
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional stabilizationMessage aStabilizationMessage = 12;
+}
+}

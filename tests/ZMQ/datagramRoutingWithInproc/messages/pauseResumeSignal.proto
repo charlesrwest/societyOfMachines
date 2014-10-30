@@ -1,0 +1,15 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+
+message pauseResumeSignal
+{
+required signalType signal = 1;
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional pauseResumeSignal aPauseResumeSignal = 10;
+}
+}
+
+

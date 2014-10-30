@@ -1,0 +1,14 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+
+message signalAck
+{
+required signalType signalToAck = 1;
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional signalAck aSignalAck = 11;
+}
+}
+

@@ -1,0 +1,17 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+
+message datagramAddress
+{
+required uint64 messageID = 1; //A number identifying the message so that it doesn't get mixed with other messages when the response is returned
+required fixed32 ip_address = 2;
+required fixed32 port_number = 3;
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional datagramAddress aDatagramAddress = 12;
+}
+}
+
+

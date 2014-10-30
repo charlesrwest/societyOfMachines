@@ -1,3 +1,5 @@
+cmake_minimum_required (VERSION 2.8.3)
+
 FILE(GLOB SOURCEFILES ./libraryCode/*.cpp ./libraryCode/*.c)
 
 message( ${SOURCEFILES} ${ProtoSources} )
@@ -10,7 +12,7 @@ message( ${SOURCEFILES} ${ProtoSources} )
 #target_link_libraries(localURIDatabase ${PROTOBUF_LIBRARY} sqlite3 zmq messages.a)
 
 #Tell cmake were to find the sub-projects
-#add_subdirectory(./libraryCode)
+add_subdirectory(./libraryCode)
 add_subdirectory(./testCases/testDatabase)
 add_subdirectory(./testCases/testPubSubURISearching)
 add_subdirectory(./testCases/testPubSub)

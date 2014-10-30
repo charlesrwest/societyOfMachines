@@ -1,0 +1,1 @@
+To make an authenticator in ZMQ, it appears that you need to bind the inproc address "inproc://zeromq.zap.01" with the authenticator, which processes messages according to the ZAP format spec (http://rfc.zeromq.org/spec:27).  You then set sockets that are suppose to authenticate with the 

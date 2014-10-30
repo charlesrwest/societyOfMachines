@@ -1,0 +1,14 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+
+message predecessorRequest
+{
+required uint64 messageID = 1; //A number identifying the message so that it doesn't get mixed with other messages when the response is returned
+required bytes requester_chord_id = 2;  //A 512 bit chord ID
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional predecessorRequest aPredecessorRequest = 13;
+}
+}

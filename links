@@ -1,0 +1,5 @@
+Libsodium docs:
+http://mob5.host.cs.st-andrews.ac.uk/html/
+
+Signing example:
+https://github.com/mwarning/libsodium-example/blob/master/crypto_sign.c

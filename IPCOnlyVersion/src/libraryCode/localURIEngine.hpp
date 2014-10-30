@@ -93,7 +93,7 @@ static std::string *engineInProcAddress;
 static zmq::context_t *ZMQContext;
 static std::string pathForMessagingDirectory; //The messaging directory folder to use (empty if not set)
 
-zmq::context_t engineContext;         //Initialization of member classes happens in order of listing, context must be higher than listing
+zmq::context_t engineContext;         //Initialization of member classes happens in order of listing, context must be higher than listing (also ensure proper order of destruction)
 
 
 

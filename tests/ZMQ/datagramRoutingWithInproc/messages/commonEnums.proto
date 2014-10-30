@@ -1,0 +1,5 @@
+enum signalType
+{
+PAUSE_SIGNAL  = 1;
+RESUME_SIGNAL = 2;
+}

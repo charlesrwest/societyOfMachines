@@ -1,0 +1,11 @@
+//pauseResumeSignal 10
+//aSignalAck        11
+
+
+//This message contains no fields but has a large extension option range so that any new messages can add its definition to it as an optional or repeated message member.
+message messageContainer
+{
+extensions 10 to max; //Numbers 19000 to 19999 are reserved for internal use by libprotobuf
+}
+
+

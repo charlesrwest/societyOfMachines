@@ -568,8 +568,6 @@ SOM_CATCH("Error receiving inproc request\n")
 multiPartMessageFlag = messageBuffer->more();
 
 //Send message (or message part) to the server
-const char *testString="This is a string\n";
-
 SOM_TRY
 if(singletonRequesterSocket->send((*messageBuffer)) == false)
 {
