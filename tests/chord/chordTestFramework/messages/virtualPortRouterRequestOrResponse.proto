@@ -1,0 +1,13 @@
+//This message is used for a request (or the associated response) for a virtual port to be opened or closed
+message virtualPortRouterRequestOrResponse
+{
+optional uint32 virtualPortID = 1; //Which virtual port to open or close 
+optional virtualPortOperationType operationType = 2; //This field tells the virtual port router to open or close the virtual port socket.  If the operation succeeded, the reply message will echo back the operation type.  If the operation failed, it will be set to OPERATION_FAILED 
+}
+
+enum virtualPortOperationType
+{
+OPEN_VIRTUAL_PORT_SOCKET  = 1;
+CLOSE_VIRTUAL_PORT_SOCKET = 2;
+OPERATION_FAILED = 3;
+}

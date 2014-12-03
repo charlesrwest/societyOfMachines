@@ -1,0 +1,12 @@
+
+//This message is used to identify which virtual port to send the message to and other characteristics of the message.
+message virtualPortMessageHeader
+{
+optional uint32 destinationVirtualPortID = 1; //Which virtual port to send the message to 
+optional uint32 senderVirtualPortID = 2; //Which virtual port the reply should be sent to 
+optional uint64 transactionID = 3; //A number identifying the message so that it doesn't get mixed with other messages when associated response is returned
+optional uint32 UDPPortNumber = 4; //port of sender/destination, either set to indicate target by sender or updated by router upon reception from the information in the UDP header
+optional uint32 UDPIP = 5;  //IP of sender/destination, either set to indicate target by sender or updated by router upon reception from the information in the UDP header
+}
+
+

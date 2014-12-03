@@ -173,6 +173,10 @@ case SERVER_REQUEST_FAILED:
 return std::string("SERVER_REQUEST_FAILED");
 break;
 
+case BUFFER_OVERFLOW:
+return std::string("BUFFER_OVERFLOW");
+break;
+
 case UNKNOWN:
 return std::string("UNKNOWN");
 break;

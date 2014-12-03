@@ -30,6 +30,7 @@ SYSTEM_ERROR,
 INVALID_FUNCTION_INPUT, //Value given to a function which renders is output/operation invalid
 INCORRECT_SERVER_RESPONSE,
 SERVER_REQUEST_FAILED,
+BUFFER_OVERFLOW,
 UNKNOWN
 };
 

@@ -20,4 +20,4 @@ Run stabilization in the main node thread, as it is the only thread that is send
 
 << operation is possible on big ints
 
-A chord address is owned by the closest chord ID that is strictly greater than = to 
+A chord address is owned by the closest chord ID that is strictly greater than = to it
