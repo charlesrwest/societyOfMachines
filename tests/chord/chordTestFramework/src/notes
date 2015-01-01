@@ -21,3 +21,65 @@ Run stabilization in the main node thread, as it is the only thread that is send
 << operation is possible on big ints
 
 A chord address is owned by the closest chord ID that is strictly greater than = to it
+
+Chord architecture:
+
+A chord node can be run as a single thread with the ZMQ poll function used to implement variable timeouts.  The fundamental purpose of the chord network is to find the chord node responsible for a certain address.
+
+In practice, a chord node is responsible for several behaviors:
+
+Active:
+requestClosestKnownPredecessor: Ask a node its successor if it is the owner of the requested address and otherwise the address of the node they know of that is closest to a given address while still being (modulo) less.  Get the associated contact of each returned node.
+
+findAddressSpaceOwner: Iteratively requestClosestKnownPredecessor until the owner of the address (and it's contact info) is found.
+
+join (join the chord network): Call findAddressSpaceOwner for the chord node's own address.  Set the owner as this node's successor
+
+stabilize: Request predecessor from successor, if predecessor < successor, set successor = returned predecessor
+
+updateFingerTable: Periodically call findAddressSpaceOwner to update the owner of each of the finger table entries.
+
+Passive:
+handle requestClosestKnownPredecessor requests by searching all finger tables associated with this host (each of the finger tables for each of the virtual nodes).  Also, if the requester is closer but modulo less than the answering node's address, then the predecessor of the answering node is changed to the requester's address.
+
+handle stabilization requests by returning the current predecessor for the answering node.
+
+Datastructures:
+struct findAddressOwnerRequest
+{
+chordID addressToFind
+chordID lastClosestKnownPredessesor
+contact_info lastClosestKnownPredecessorContactInfo
+uint64_t lastSentRequestID  //The ID of the last request sent
+}
+
+//findAddressOwnerRequest pointers are deleted/inserted as the requests proceeds and the struct findAddressOwnerRequest is updated.
+std::map<uint64_t, findAddressOwnerRequest *> requestIDToFindAddressOwnerRequest;
+
+priorityQueue timeouts -> a priority queue which stores when different events happen/need to be updated.  Some are ignored if an incoming message has made the timeout invalid.
+
+Types of timeouts:
+requestClosestKnownPredecessor request for a findAddressOwnerRequest timed out (so needs to be resent or some other action taken).
+
+stabilizationMessage timed out and needs to be resent
+
+Finger table entry needs to be updated via a requestClosestKnownPredecessor request.
+
+So, overall, it looks like a bunch of the complexity is various types of findAddressOwnerRequests.  This implies that using the same inproc socket interface that outside lookup requests use to execute these requests will save a lot of work.  The priority queue can store a generic container for integers/doubles for different types of timeouts (related to requestClosestKnownPredecessors or not).
+
+There are three types of failures that should be considered when doing a findAddressOwnerRequest.  The datagram (request or reply) could get killed enroute, the host the request is sent to could go offline or change IP and there could be a node that give bogus route instructions.
+
+The first type of failure can be dealt with by using message timeouts (resending).  The second type of failure could be dealt with by using the route that has been transversed and collecting data for alternate routes.  The third can also be mitigated to a certain extent by backtracking if bad information is given (it might be good to keep track of how many bad routes a node has given).
+
+The first backtracking scheme that comes to mind is having a simple stack of nodes that have been contacted and backtracking to a previous one if a problem occurs (number of message repeats is exceeded).  The only problem there is that it might just give the requester the exact same node that it was having trouble with (stabilization not updating fast enough).
+
+A improvement to that scheme would be to have a list of IP/contact infos that hadn't worked for that request, avoiding repeats by backtracking further.  However, if stabilization hasn't been updated or only the last node has failed, this will still lead mostly back to the same path.
+
+An alternate proposal is to have each chord node response give the best two nodes that it knows of and have backtracking take a different path in the case of failure.  This would deal with case 2 fairly well, but still have trouble with case 3 since the malicious node could just give many different bad path pairs (valid keys with invalid IP/port).
+
+A potential way to deal with that is to keep a count of how many bad directions a node has given and exclude a node after it has given a certain number of bad paths.  This would make the number of nodes required to misdirect and cause a failure become much larger.
+
+So a reasonable way to do it would be to have the following:
+Each requestClosestKnownPredecessor request will have a certain number of closest known predecessors (probably 2 for the first design).  Each retrieved predecessor info will be entered in a queue.  Upon sending a request to a node, each contact info will be entered into a stack.  Each contact info will also be placed in three maps.  The first map (contactInfo->contactInfo) keeps track of which node suggested a particular node.  The second map (contactInfo->resendCount) will contain the number of times the request has been resent to the node.  If the resend number reaches a certain amount, the node contact info will be removed from the stack and not added again. The third map (contactInfo->badReferenceCount) keeps track of how many bad directions a node has given on this request (incremented when a node it suggested exceeds the resend count limit or it suggests one that has already reached the limit again).  If the badReferenceCount limit is exceeded, then the node is removed from the stack and not added again.  If the stack becomes empty or a time limit is reached, the request returns with error.
+
+The finger

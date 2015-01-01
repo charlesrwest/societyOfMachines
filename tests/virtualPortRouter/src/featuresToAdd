@@ -1,0 +1,5 @@
+A message interface to close the process down so that polling doesn't have to busy wait.
+
+Create a simple way to connect an inproc socket to the virtual port router with a given virtual port
+
+Clean out printfs

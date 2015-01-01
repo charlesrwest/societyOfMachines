@@ -1,14 +1,14 @@
 #include "chordNode.hpp"
 
 /*
-This function initializes the object and starts a thread that conducts the operations of the node.  It does not return until all initialization in the thread is completed and the nodePortNumber is safe to read
-@param inputEntryChordPortNumber: The port number of a node in the chord network (used to allow this node to join the network).  If the port number is 0, the node just starts a new network
+This function initializes the object and starts a thread that conducts the operations of the node.  It does not return until all initialization in the thread is completed and the nodePortNumber is safe to read.
+@param inputChordNodeContactInformation: The contact info for the first node to contact to join the network
 @param inputManagerBaseInprocAddress: A string to the root of the node manager inproc addresses
 @param inputZMQContext: The ZMQ context to use for inproc communications
 
 @exceptions: This function can throw exceptions
 */
-chordNode::chordNode(uint32_t inputEntryChordNodePortNumber, std::string inputManagerBaseInprocAddress, zmq::context_t *inputZMQContext)
+chordNode::chordNode(const chordNodeContactInformation &inputChordNodeContactInformation, std::string inputManagerBaseInprocAddress, zmq::context_t *inputZMQContext)
 {
 if(inputZMQContext == nullptr)
 {
@@ -37,17 +37,28 @@ nodeData.push_back(lookupTable[distribution(gen)]);
 //printf("Done generating characters\n");
 //fflush(stdout);
 
+//Setup datagram router
+SOM_TRY
+datagramInterfaceRouter.reset(new virtualPortRouter(context));
+SOM_CATCH("Error, problem initializing virtual port router\n")
+
+nodePortNumber = datagramInterfaceRouter->datagramPortNumber;
+
 
 std::promise<bool> threadInitializationResult;
 
+chordNodeContactInformation buffer = inputChordNodeContactInformation;
+
 //Start a thread and pass it a this pointer
-nodeThread = std::unique_ptr<std::thread>(new std::thread(initializeAndRunChordNode, this,inputEntryChordNodePortNumber, &threadInitializationResult));
+nodeThread = std::unique_ptr<std::thread>(new std::thread(initializeAndRunChordNode, this, buffer, &threadInitializationResult));
 
 //This should block until the server thread has been initialized and throw any exceptions that the server thread threw during its initialization
 if(threadInitializationResult.get_future().get() == true)
 {
    //printf("Thread reports that it initialized successfully\n");
 }
+
+
 
 
 }
@@ -67,10 +78,10 @@ nodeThread->join();
 /*
 This function is run as a seperate thread and implements the chord node behavior
 @param inputChordNode: A pointer to the object associated with the node this function is running
-@param inputEntryChordNodePortNumber: The port node of the chord node used to enter the chord network
+@param inputChordNodeContactInformation: The contact info for the first node to contact to join the network
 @param inputPromise: The promise used to signal when initialization has been completed and whether it was successful (accessing the promise value throws any exceptions that occurred in the initialization process
 */
-void initializeAndRunChordNode(chordNode *inputChordNode, uint32_t inputEntryChordNodePortNumber, std::promise<bool> *inputPromise)
+void initializeAndRunChordNode(chordNode *inputChordNode, chordNodeContactInformation inputChordNodeContactInformation, std::promise<bool> *inputPromise)
 {
 
 //Initialize resources
@@ -85,8 +96,6 @@ catch(const std::exception &inputException)
 inputPromise->set_exception(std::make_exception_ptr(SOMException(std::string("Error setting integer with raw hash\n") + inputException.what(), SYSTEM_ERROR, __FILE__, __LINE__)));
 }
 
-//Start server threads
-
 inputPromise->set_value(true); //Initialization completed successfully
 
 while(true)
@@ -96,11 +105,11 @@ if(resources->handlePauseResumeAndShutdownSignal() == 1)
 return;
 }
 
-//Do stabilization loop
+//Do event handling loop
 
 
 
-sleep(1);
+
 }
 }
 
@@ -116,23 +125,6 @@ chordNodeResources::chordNodeResources(chordNode *inputChordNode)
 associatedChordNode = inputChordNode;
 nodeMessageNumberIndex = 0;
 
-SOM_TRY
-associatedDatagramRouter.reset(new datagramRouter(inputChordNode->context));
-SOM_CATCH("Error initializing datagram router\n")
-
-//Create socket to listen for requests to get the chord ID that owns a particular place in the ID space
-SOM_TRY
-findNodeAssociatedWithKeyServerSocket.reset(new zmq::socket_t(*(inputChordNode->context), ZMQ_PULL));
-SOM_CATCH("Error initializing findNodeAssociatedWithKeyServerSocket\n")
-
-//Now bind the socket
-inputChordNode->findNodeAssociatedWithKeyServerSocketAddress = "findNodeAssociatedWithKeyServerSocket." + associatedDatagramRouter->routerExtension;
-SOM_TRY
-findNodeAssociatedWithKeyServerSocket->bind(("inproc://" + inputChordNode->findNodeAssociatedWithKeyServerSocketAddress).c_str());
-SOM_CATCH("Error binding findNodeAssociatedWithKeyServerSocket\n")
-
-
-inputChordNode->nodePortNumber = associatedDatagramRouter->datagramPortNumber;
 
 //Generate chordID and its corresponding bigint from the port number
 //Make hash
@@ -147,9 +139,18 @@ if(createUInt512FromRawHash((const char *) inputChordNode->chordID, crypto_hash_
 throw SOMException(std::string("Error setting integer with raw hash\n"), SYSTEM_ERROR, __FILE__, __LINE__);
 }
 
+//Create self contact information
+chordNodeContactInformation selfContactInfo;
+selfContactInfo.set_chord_id(std::string((const char *) inputChordNode->chordID, CHORD_ID_SIZE));
+selfContactInfo.set_ip(INADDR_LOOPBACK);
+selfContactInfo.set_port(inputChordNode->datagramInterfaceRouter->datagramPortNumber);
+selfContactInfo.set_virtual_port(1);
+
+
+
 //Create finger table (which is protected by associated mutex)
 SOM_TRY
-nodeFingerTable.reset(new fingerTable(inputChordNode->chordIDForComputation));
+nodeFingerTable.reset(new fingerTable( selfContactInfo, FINGER_TABLE_SIZE));
 SOM_CATCH("Error creating finger table\n")
 
 //Create the pause/resume signal socket

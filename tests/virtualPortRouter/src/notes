@@ -1,0 +1,23 @@
+I added entries:
+
+* soft nofile　50240
+* hard nofile 50240
+
+to the configuration file using command:
+
+sudo nano /etc/security/limits.conf
+
+Before running the process, I then run:
+
+ulimit -n 10000
+
+before running the program.  This allows me to get up to 500 nodes running (but a little less might be safer).  
+
+http://en.cppreference.com/w/cpp/algorithm/lower_bound
+lower bound/upper bounds functions can be used to find appropriate address in table.
+
+Run stabilization in the main node thread, as it is the only thread that is sending messages without receiving one (so it is the only one that really needs to be able to be paused).
+
+<< operation is possible on big ints
+
+A chord address is owned by the closest chord ID that is strictly greater than = to it

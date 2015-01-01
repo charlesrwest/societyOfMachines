@@ -21,16 +21,21 @@
 
 #include "SOMException.hpp"
 #include "SOMScopeGuard.hpp"
-#include "datagramRouter.hpp"
 #include "hashAndBigNumberFunctions.hpp"
 #include "fingerTable.hpp"
+#include "virtualPortRouter.hpp"
+#include "virtualPortPairSocketWrapper.hpp"
 
 #include "pauseResumeSignal.pb.h"
 #include "signalAck.pb.h"
-
+#include "chordNodeContactInformation.pb.h"
+#include "findAddressOwnerRequestInfo.hpp"
 
 //For testing 
 #include<unistd.h>
+
+#define FINGER_TABLE_SIZE 64
+#define CHORD_ID_SIZE 64
 
 /*
 This class represents a single chord node 
@@ -39,14 +44,14 @@ class chordNode
 {
 public:
 /*
-This function initializes the object and starts a thread that conducts the operations of the node.  It does not return until all initialization in the thread is completed and the nodePortNumber is safe to read
-@param inputEntryChordPortNumber: The port number of a node in the chord network (used to allow this node to join the network).  If the port number is 0, the node just starts a new network
+This function initializes the object and starts a thread that conducts the operations of the node.  It does not return until all initialization in the thread is completed and the nodePortNumber is safe to read.
+@param inputChordNodeContactInformation: The contact info for the first node to contact to join the network
 @param inputManagerBaseInprocAddress: A string to the root of the node manager inproc addresses
 @param inputZMQContext: The ZMQ context to use for inproc communications
 
 @exceptions: This function can throw exceptions
 */
-chordNode(uint32_t inputEntryChordNodePortNumber, std::string inputManagerBaseInprocAddress, zmq::context_t *inputZMQContext);
+chordNode(const chordNodeContactInformation &inputChordNodeContactInformation, std::string inputManagerBaseInprocAddress, zmq::context_t *inputZMQContext);
 
 /*
 This function signals for the thread to shut down and then waits for it to do so.
@@ -55,11 +60,7 @@ This function signals for the thread to shut down and then waits for it to do so
 
 
 zmq::context_t *context;
-//std::unique_ptr<void *> pauseResumeSignalSocket;
-//std::unique_ptr<void *> pauseResumeSignalAckSocket;
-//std::unique_ptr<void *> findNodeAssociatedWithKeyServerSocket;
-//std::unique_ptr<void *> addRemoveKeyValueRequestServerSocket;
-//std::unique_ptr<void *> getKeyValueRequestServerSocket;
+std::unique_ptr<virtualPortRouter> datagramInterfaceRouter; //The virtual port router associated with this node
 
 
 uint32_t nodePortNumber;
@@ -74,7 +75,7 @@ std::unique_ptr<std::thread> nodeThread;
 bool timeToShutdownFlag;  //True if the created thread should shutdown
 
 //Allow the thread function to access private variables
-friend void initializeAndRunChordNode(chordNode *inputChordNode, uint32_t inputEntryChordNodePortNumber, std::promise<bool> *inputPromise);
+friend void initializeAndRunChordNode(chordNode *inputChordNode, chordNodeContactInformation inputChordNodeContactInformation, std::promise<bool> *inputPromise);
 
 private:
 //Don't allow copying
@@ -85,10 +86,10 @@ void operator=(chordNode const&) = delete;
 /*
 This function is run as a seperate thread and implements the chord node behavior
 @param inputChordNode: A pointer to the object associated with the node this function is running
-@param inputEntryChordNodePortNumber: The port node of the chord node used to enter the chord network
+@param inputChordNodeContactInformation: The contact info for the first node to contact to join the network
 @param inputPromise: The promise used to signal when initialization has been completed and whether it was successful (accessing the promise value throws any exceptions that occurred in the initialization process
 */
-void initializeAndRunChordNode(chordNode *inputChordNode, uint32_t inputEntryChordNodePortNumber, std::promise<bool> *inputPromise);
+void initializeAndRunChordNode(chordNode *inputChordNode, chordNodeContactInformation inputChordNodeContactInformation, std::promise<bool> *inputPromise);
 
 /*
 This class bundles resources associated with the operation of the thread(s) associated with the chord node.
@@ -97,7 +98,7 @@ class chordNodeResources
 {
 public:
 /*
-This function initializes the sockets to get/send signals for pausing/resuming the chord node thread and creates the datagram router needed to send/send receive udp datagrams.
+This function initializes the sockets to get/send signals for pausing/resuming the chord node thread and creates the datagram router needed to send/receive udp datagrams.
 @param inputChordNode: The chord node these resources are associated
 
 @exceptions: This function can throw exceptions
@@ -155,8 +156,15 @@ std::unique_ptr<fingerTable> nodeFingerTable;
 
 std::unique_ptr<zmq::socket_t> pauseResumeSignalSocket; 
 std::unique_ptr<zmq::socket_t> pauseResumeSignalAckSocket;//socket to signal acknowledgement of the pause/resume signal
-std::unique_ptr<zmq::socket_t> findNodeAssociatedWithKeyServerSocket;  //Expects a closestPredecessorRequest
-std::unique_ptr<datagramRouter> associatedDatagramRouter;
+
+std::unique_ptr<zmq::socket_t> findNodeAssociatedWithAddressSocket;  //Expects a findAddressOwnerRequestOrResponse and responds with the same
+std::unique_ptr<virtualPortPairSocketWrapper> closestKnownPredecessorRequestsHandler; //Expects a closestPredecessorRequest and responds with a closestPredecessorRequestResponse
+std::unique_ptr<virtualPortPairSocketWrapper> stabilizationRequestHandler; //Expects a stabilizationRequestOrResponse and responds with a stabilizationRequestOrResponse
+std::unique_ptr<virtualPortPairSocketWrapper> closestPredecessorRequestSender;  //Sends out closestPredecessorRequests and receives closestPredecessorRequestResponses 
+std::unique_ptr<virtualPortPairSocketWrapper> stabilizationRequestSender;  //Sends out a stabilizationRequestOrResponse and receives a stabilizationRequestOrResponse
+
+std::map<uint64_t, findAddressOwnerRequestInfo> requestIDToAddressOwnerRequestInfo; //This map finds the information related to the particular request
+
 };
 
 

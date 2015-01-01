@@ -1,0 +1,17 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+
+
+//This message has all of the data required to contact a particular chord node
+//Chord node virtual ports will be assigned sequentially in the following order:
+//virtual_port: The interface to send closestPredecessorRequests to
+//virtual_port+1: The interface to send stabilization requests to
+
+message chordNodeContactInformation
+{
+required bytes chord_id = 1; //The associated chord ID in binary
+required uint32 ip = 2; //The associated IP in host byte order
+required uint32 port = 3; //The associated port in host byte order
+required uint32 virtual_port = 4; //The starting virtual port associated with this chord node  
+
+}

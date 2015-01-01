@@ -1,0 +1,19 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+import "chordNodeContactInformation.proto";
+
+//This message is used to ask for the node that owns a particular chord address
+//When this message is used as a request, it is sent with the target_chord_address entry filled in
+//When this message is used for a response, it is sent with chordAddressOwnerContactInfo filled in
+
+message findAddressOwnerRequestOrResponse
+{
+optional bytes target_chord_address = 1; //The chord ID to find
+optional chordNodeContactInformation chordAddressOwnerContactInfo = 2; //The contact info/chordID of the address owner
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional findAddressOwnerRequestOrResponse aFindAddressOwnerRequestOrResponse = 18;
+}
+}

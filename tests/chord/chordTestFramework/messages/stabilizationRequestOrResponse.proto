@@ -1,0 +1,18 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+import "chordNodeContactInformation.proto";
+
+//This message is used to ask for the predecessor of a node (and its contact details
+//When this message is used as a request, it is sent without predecessorContactInfo
+//When this message is used for a response, it is sent with predecessorContactInfo
+
+message stabilizationRequestOrResponse
+{
+optional chordNodeContactInformation predecessorContactInfo = 1; //The contact info/chordID of the node's predecessor
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional stabilizationRequestOrResponse aStabilizationRequestOrResponse = 17;
+}
+}

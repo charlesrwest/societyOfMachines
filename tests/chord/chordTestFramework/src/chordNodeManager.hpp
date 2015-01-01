@@ -20,7 +20,7 @@
 #include "signalAck.pb.h"
 
 /*
-This object maintains a list of chord nodes (each with there own thread) and allows for them to be paused so that a snapshot of the chord ring can be taken.
+This object maintains a list of chord nodes (each with their own thread) and allows for them to be paused so that a snapshot of the chord ring can be taken.
 */
 class chordNodeManager
 {
@@ -35,11 +35,11 @@ chordNodeManager(std::string inputInprocAddressForPauseResumeSignals);
 
 /*
 This function creates a new chord node object/process.  The created node is fully initialized once the promise returns its result.  Any exceptions that occurred as part of the initialization are thrown when the promise is queried for its result
-@param inputEntryChordNodePortNumber: The port number of the node that the new node should use to enter the network (0 indicates that no other nodes currently exist)
+@param inputChordNodeContactInformation: The contact info of a node that the chord node can use to enter the network
 @return: This function returns the port number associated with the node or throws an exception
 @exception: This function can throw SOMExceptions if something goes wrong
 */
-uint32_t createChordNode(uint32_t inputEntryChordNodePortNumber);
+uint32_t createChordNode(const chordNodeContactInformation &inputChordNodeContactInformation);
 
 /*
 This function publishes the pause signal, then waits until all of the nodes have emitted the pausing signal.

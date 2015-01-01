@@ -10,6 +10,7 @@
 
 int main(int argc, char **argv)
 {
+/*
 boost::multiprecision::uint512_t testNumber0("0x8000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A");
 
 fingerTable myFingerTable(testNumber0);
@@ -18,7 +19,7 @@ for(int i=0; i<myFingerTable.targetChordAddresses.size(); i++)
 {
 printf("0x%s\n", myFingerTable.targetChordAddresses[i].str(-1,std::ios::hex).c_str());
 }
-
+*/
 
 
 /*

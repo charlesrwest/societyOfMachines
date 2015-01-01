@@ -41,17 +41,17 @@ SOM_CATCH("Error setting subscription on pause/resume acknowledgement socket\n")
 
 /*
 This function creates a new chord node object/process.  The created node is fully initialized once the promise returns its result.  Any exceptions that occurred as part of the initialization are thrown when the promise is queried for its result
-@param inputEntryChordNodePortNumber: The port number of the node that the new node should use to enter the network (0 indicates that no other nodes currently exist)
+@param inputChordNodeContactInformation: The contact info of a node that the chord node can use to enter the network
 @return: This function returns the port number associated with the node or throws an exception
 @exception: This function can throw SOMExceptions if something goes wrong
 */
-uint32_t chordNodeManager::createChordNode(uint32_t inputEntryChordNodePortNumber)
+uint32_t chordNodeManager::createChordNode(const chordNodeContactInformation &inputChordNodeContactInformation)
 {
 
 //Create a new node
 chordNode *tempNodePointer;
 SOM_TRY
-tempNodePointer = new chordNode(inputEntryChordNodePortNumber, inprocAddressForPauseResumeSignals, context.get());
+tempNodePointer = new chordNode(inputChordNodeContactInformation, inprocAddressForPauseResumeSignals, context.get());
 SOM_CATCH("Error creating node\n")
 
 //Get the node port number and add it to the map
