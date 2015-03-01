@@ -41,29 +41,38 @@ SOM_CATCH("Error setting subscription on pause/resume acknowledgement socket\n")
 
 /*
 This function creates a new chord node object/process.  The created node is fully initialized once the promise returns its result.  Any exceptions that occurred as part of the initialization are thrown when the promise is queried for its result
-@param inputChordNodeContactInformation: The contact info of a node that the chord node can use to enter the network
+@param inputChordNetworkContactInformation: The contact info of a nodes that the chord node can use to enter the network
 @return: This function returns the port number associated with the node or throws an exception
 @exception: This function can throw SOMExceptions if something goes wrong
 */
-uint32_t chordNodeManager::createChordNode(const chordNodeContactInformation &inputChordNodeContactInformation)
+uint32_t chordNodeManager::createChordNode(const std::vector<chordNodeContactInformation> &inputChordNetworkContactInformation)
 {
 
 //Create a new node
-chordNode *tempNodePointer;
+std::unique_ptr<chordNode> newNode;
+
+printf("Making chord node\n");
 SOM_TRY
-tempNodePointer = new chordNode(inputChordNodeContactInformation, inprocAddressForPauseResumeSignals, context.get());
+newNode.reset(new chordNode(inputChordNetworkContactInformation, inprocAddressForPauseResumeSignals, context.get()));
 SOM_CATCH("Error creating node\n")
+printf("Chord node creation completed\n");
 
 //Get the node port number and add it to the map
-uint32_t nodePortNumber = tempNodePointer->nodePortNumber;
+uint32_t nodePortNumber = newNode->nodePortNumber;
 
-chordRingIDToNode[nodePortNumber] = std::move(std::unique_ptr<chordNode>(tempNodePointer));
+printf("Moving\n");
+chordRingIDToNode[nodePortNumber] = std::move(newNode);
+printf("Done moving\n");
+
 
 //Subscribe to receive pause/resume acknowledgments
 SOM_TRY
 pauseResumeSignalAckSocket->connect(("inproc://" + std::to_string(nodePortNumber)).c_str()); 
 SOM_CATCH("Error subscribing to receive pause/resume acknowledgements from new node\n")
 
+
+//Save chord contact info
+nodeContactInfos.push_back(chordRingIDToNode[nodePortNumber]->selfContactInfo);
 
 return nodePortNumber;
 }

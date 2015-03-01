@@ -38,6 +38,15 @@ This function returns the contact infos (including binary ID) of the closest cho
 std::vector<chordNodeContactInformation> getClosestPredecessors(const boost::multiprecision::uint512_t &inputChordAddress, unsigned int inputNumberOfNodesToReturn);
 
 /*
+This function returns the contact infos (including binary ID) of the closest chord nodes that are > than the given chord address (useful for finding the next best table entry when one goes out of date).
+@param inputChordAddress: The chord address to find successors for
+@return: A list of chord node contact infos, in order of closeness (closest to target first)
+
+@exceptions: This function can throw exceptions
+*/
+std::vector<chordNodeContactInformation> getClosestSuccessors(const boost::multiprecision::uint512_t &inputChordAddress, unsigned int inputNumberOfNodesToReturn);
+
+/*
 This function takes a chord ID and checks if it is a better fit than one of the current best match entries (replacing the best match if so).  If a entry is closer to its upper_bound in the table than the corresponding entry in the best matches table, it replaces the entry in the best matches table.
 @param inputChordNodeContactInfo: The chord info to test
 */

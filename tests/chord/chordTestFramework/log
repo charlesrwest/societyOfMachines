@@ -1,0 +1,431 @@
+Hello world!!
+Making chord node
+Start node is active requests sent/setup (20299)
+Operating node (20299)
+Chord node creation completed
+Moving
+Done moving
+Made node: 0
+Making chord node
+Node is active request setup but message not sent (2388)
+Sending node is active request (2388)
+Sending node is active request to virtual port (2388->20299): 3->0
+Sending node is active request sent (2388)
+Start node is active requests sent/setup (2388)
+Received node is active request (20299)
+Operating node (2388)
+Sending node is active response to virtual port (20299->2388) 0->3
+Chord node creation completed
+Moving
+Done moving
+Made node: 1
+Making chord node
+Processing node is active reply (2388)
+Node is active request setup but message not sent (10582)
+Sending node is active request (10582)
+Sending node is active request to virtual port (10582->20299): 3->0
+Sending node is active request sent (10582)
+Node is active request setup but message not sent (10582)
+Sending node is active request (10582)
+Sending node is active request to virtual port (10582->2388): 3->0
+Sending node is active request sent (10582)
+Start node is active requests sent/setup (10582)
+Received node is active request (2388)
+Received node is active request (20299)
+Sending node is active response to virtual port (20299->10582) 0->3
+Sending node is active response to virtual port (2388->10582) 0->3
+Operating node (10582)
+Chord node creation completed
+Moving
+Done moving
+Made node: 2
+Making chord node
+Processing node is active reply (10582)
+Processing node is active reply (10582)
+Node is active request setup but message not sent (11085)
+Sending node is active request (11085)
+Sending node is active request to virtual port (11085->20299): 3->0
+Sending node is active request sent (11085)
+Node is active request setup but message not sent (11085)
+Sending node is active request (11085)
+Sending node is active request to virtual port (11085->2388): 3->0
+Sending node is active request sent (11085)
+Node is active request setup but message not sent (11085)
+Sending node is active request (11085)
+Sending node is active request to virtual port (11085->10582): 3->0
+Sending node is active request sent (11085)
+Start node is active requests sent/setup (11085)
+Received node is active request (2388)
+Received node is active request (20299)
+Sending node is active response to virtual port (2388->11085) 0->3
+Sending node is active response to virtual port (20299->11085) 0->3
+Received node is active request (10582)
+Operating node (11085)
+Processing node is active reply (11085)
+Chord node creation completed
+Moving
+Done moving
+Made node: 3
+Making chord node
+Sending node is active response to virtual port (10582->11085) 0->3
+Processing node is active reply (11085)
+Processing node is active reply (11085)
+Node is active request setup but message not sent (24932)
+Sending node is active request (24932)
+Sending node is active request to virtual port (24932->20299): 3->0
+Sending node is active request sent (24932)
+Node is active request setup but message not sent (24932)
+Sending node is active request (24932)
+Sending node is active request to virtual port (24932->2388): 3->0
+Sending node is active request sent (24932)
+Node is active request setup but message not sent (24932)
+Sending node is active request (24932)
+Sending node is active request to virtual port (24932->10582): 3->0
+Sending node is active request sent (24932)
+Node is active request setup but message not sent (24932)
+Sending node is active request (24932)
+Sending node is active request to virtual port (24932->11085): 3->0
+Sending node is active request sent (24932)
+Start node is active requests sent/setup (24932)
+Received node is active request (2388)
+Received node is active request (11085)
+Received node is active request (10582)
+Sending node is active response to virtual port (2388->24932) 0->3
+Received node is active request (20299)
+Sending node is active response to virtual port (11085->24932) 0->3
+Sending node is active response to virtual port (10582->24932) 0->3
+Sending node is active response to virtual port (20299->24932) 0->3
+Operating node (24932)
+Chord node creation completed
+Moving
+Done moving
+Made node: 4
+Making chord node
+Processing node is active reply (24932)
+Processing node is active reply (24932)
+Processing node is active reply (24932)
+Processing node is active reply (24932)
+Node is active request setup but message not sent (27132)
+Sending node is active request (27132)
+Sending node is active request to virtual port (27132->20299): 3->0
+Sending node is active request sent (27132)
+Node is active request setup but message not sent (27132)
+Sending node is active request (27132)
+Sending node is active request to virtual port (27132->2388): 3->0
+Sending node is active request sent (27132)
+Node is active request setup but message not sent (27132)
+Sending node is active request (27132)
+Sending node is active request to virtual port (27132->10582): 3->0
+Sending node is active request sent (27132)
+Node is active request setup but message not sent (27132)
+Sending node is active request (27132)
+Sending node is active request to virtual port (27132->11085): 3->0
+Sending node is active request sent (27132)
+Received node is active request (20299)
+Node is active request setup but message not sent (27132)
+Sending node is active request (27132)
+Sending node is active request to virtual port (27132->24932): 3->0
+Sending node is active request sent (27132)
+Start node is active requests sent/setup (27132)
+Received node is active request (11085)
+Received node is active request (24932)
+Received node is active request (2388)
+Sending node is active response to virtual port (11085->27132) 0->3
+Sending node is active response to virtual port (24932->27132) 0->3
+Received node is active request (10582)
+Sending node is active response to virtual port (2388->27132) 0->3
+Sending node is active response to virtual port (20299->27132) 0->3
+Sending node is active response to virtual port (10582->27132) 0->3
+Operating node (27132)
+Chord node creation completed
+Moving
+Done moving
+Made node: 5
+Making chord node
+Processing node is active reply (27132)
+Processing node is active reply (27132)
+Processing node is active reply (27132)
+Processing node is active reply (27132)
+Processing node is active reply (27132)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Sending node is active request to virtual port (1544->20299): 3->0
+Sending node is active request sent (1544)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Sending node is active request to virtual port (1544->2388): 3->0
+Sending node is active request sent (1544)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Sending node is active request to virtual port (1544->10582): 3->0
+Sending node is active request sent (1544)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Sending node is active request to virtual port (1544->11085): 3->0
+Sending node is active request sent (1544)
+Received node is active request (20299)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Sending node is active request to virtual port (1544->24932): 3->0
+Sending node is active request sent (1544)
+Node is active request setup but message not sent (1544)
+Sending node is active request (1544)
+Received node is active request (24932)
+Sending node is active request to virtual port (1544->27132): 3->0
+Sending node is active request sent (1544)
+Start node is active requests sent/setup (1544)
+Received node is active request (11085)
+Sending node is active response to virtual port (20299->1544) 0->3
+Sending node is active response to virtual port (24932->1544) 0->3
+Sending node is active response to virtual port (11085->1544) 0->3
+Received node is active request (10582)
+Received node is active request (2388)
+Operating node (1544)
+Chord node creation completed
+Moving
+Done moving
+Made node: 6
+Making chord node
+Processing node is active reply (1544)
+Sending node is active response to virtual port (2388->1544) 0->3
+Sending node is active response to virtual port (10582->1544) 0->3
+Received node is active request (27132)
+Processing node is active reply (1544)
+Sending node is active response to virtual port (27132->1544) 0->3
+Processing node is active reply (1544)
+Processing node is active reply (1544)
+Processing node is active reply (1544)
+Processing node is active reply (1544)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->20299): 3->0
+Sending node is active request sent (12164)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->2388): 3->0
+Sending node is active request sent (12164)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->10582): 3->0
+Sending node is active request sent (12164)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->11085): 3->0
+Sending node is active request sent (12164)
+Received node is active request (20299)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->24932): 3->0
+Sending node is active request sent (12164)
+Received node is active request (2388)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->27132): 3->0
+Sending node is active request sent (12164)
+Node is active request setup but message not sent (12164)
+Sending node is active request (12164)
+Sending node is active request to virtual port (12164->1544): 3->0
+Sending node is active request sent (12164)
+Start node is active requests sent/setup (12164)
+Sending node is active response to virtual port (2388->12164) 0->3
+Sending node is active response to virtual port (20299->12164) 0->3
+Operating node (12164)
+Chord node creation completed
+Moving
+Done moving
+Processing node is active reply (12164)
+Made node: 7
+Making chord node
+Received node is active request (10582)
+Received node is active request (24932)
+Sending node is active response to virtual port (10582->12164) 0->3
+Processing node is active reply (12164)
+Received node is active request (11085)
+Sending node is active response to virtual port (24932->12164) 0->3
+Received node is active request (27132)
+Sending node is active response to virtual port (11085->12164) 0->3
+Processing node is active reply (12164)
+Received node is active request (1544)
+Sending node is active response to virtual port (27132->12164) 0->3
+Sending node is active response to virtual port (1544->12164) 0->3
+Processing node is active reply (12164)
+Processing node is active reply (12164)
+Processing node is active reply (12164)
+Processing node is active reply (12164)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->20299): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->2388): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->10582): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->11085): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->24932): 3->0
+Sending node is active request sent (13250)
+Received node is active request (20299)
+Node is active request setup but message not sent (13250)
+Received node is active request (2388)
+Received node is active request (24932)
+Sending node is active response to virtual port (20299->13250) 0->3
+Received node is active request (10582)
+Sending node is active response to virtual port (2388->13250) 0->3
+Sending node is active response to virtual port (24932->13250) 0->3
+Sending node is active request (13250)
+Sending node is active request to virtual port (13250->27132): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Sending node is active response to virtual port (10582->13250) 0->3
+Sending node is active request to virtual port (13250->1544): 3->0
+Sending node is active request sent (13250)
+Node is active request setup but message not sent (13250)
+Sending node is active request (13250)
+Received node is active request (27132)
+Sending node is active request to virtual port (13250->12164): 3->0
+Sending node is active request sent (13250)
+Start node is active requests sent/setup (13250)
+Received node is active request (1544)
+Received node is active request (11085)
+Sending node is active response to virtual port (27132->13250) 0->3
+Sending node is active response to virtual port (11085->13250) 0->3
+Sending node is active response to virtual port (1544->13250) 0->3
+Received node is active request (12164)
+Sending node is active response to virtual port (12164->13250) 0->3
+Operating node (13250)
+Chord node creation completed
+Moving
+Done moving
+Processing node is active reply (13250)
+Made node: 8
+Making chord node
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Processing node is active reply (13250)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->20299): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->2388): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->10582): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->11085): 3->0
+Sending node is active request sent (4955)
+Received node is active request (20299)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->24932): 3->0
+Sending node is active request sent (4955)
+Received node is active request (2388)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->27132): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->1544): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->12164): 3->0
+Sending node is active request sent (4955)
+Node is active request setup but message not sent (4955)
+Sending node is active request (4955)
+Sending node is active request to virtual port (4955->13250): 3->0
+Sending node is active request sent (4955)
+Start node is active requests sent/setup (4955)
+Sending node is active response to virtual port (2388->4955) 0->3
+Sending node is active response to virtual port (20299->4955) 0->3
+Received node is active request (24932)
+Received node is active request (11085)
+Operating node (4955)
+Chord node creation completed
+Moving
+Done moving
+Processing node is active reply (4955)
+Sending node is active response to virtual port (24932->4955) 0->3
+Made node: 9
+Received node is active request (27132)
+Sending node is active response to virtual port (11085->4955) 0->3
+Received node is active request (1544)
+Received node is active request (10582)
+Processing node is active reply (4955)
+Sending node is active response to virtual port (27132->4955) 0->3
+Sending node is active response to virtual port (1544->4955) 0->3
+Sending node is active response to virtual port (10582->4955) 0->3
+Received node is active request (12164)
+Processing node is active reply (4955)
+Received node is active request (13250)
+Processing node is active reply (4955)
+Sending node is active response to virtual port (12164->4955) 0->3
+Sending node is active response to virtual port (13250->4955) 0->3
+Processing node is active reply (4955)
+Processing node is active reply (4955)
+Processing node is active reply (4955)
+Processing node is active reply (4955)
+Processing node is active reply (4955)
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT

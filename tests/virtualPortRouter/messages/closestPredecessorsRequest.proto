@@ -1,0 +1,19 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+import "chordNodeContactInformation.proto";
+
+//The node responsible for a particular address space can be found iteratively asking the closest known node for the closest node it knows of until the answer is the node that is being asked (the closest predecessor it knows of is itself).  The node responsible for that address can then be found by getting the successor of the closest predecessor
+
+message closestPredecessorsRequest
+{
+required chordNodeContactInformation sender_contact_info = 1;  //The contact information of the sender of the request or response
+
+required bytes target_chord_address = 2; //The address we are trying to find the closest predecessor for
+required uint32 number_of_predecessors_to_return = 3;  //How many predecessor entries to return
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional closestPredecessorsRequest aClosestPredecessorsRequest = 15;
+}
+}

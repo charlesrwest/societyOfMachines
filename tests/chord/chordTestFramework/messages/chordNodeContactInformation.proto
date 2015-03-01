@@ -14,4 +14,6 @@ required uint32 ip = 2; //The associated IP in host byte order
 required uint32 port = 3; //The associated port in host byte order
 required uint32 virtual_port = 4; //The starting virtual port associated with this chord node  
 
+optional int64 unix_time_stamp = 5; //A optional timestamp of when this information was last updated (in unix time format)
+optional bool is_stale = 6; //This entry is from a legacy session and could be out of date
 }

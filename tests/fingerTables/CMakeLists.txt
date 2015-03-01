@@ -9,7 +9,7 @@ find_package(Protobuf REQUIRED)
 #SET(TOP_LEVEL_HEADER_DIRECTORIES /home/hewhosurvives/c++/libraries/cppzmq-master ../messages)
 
 #set path to library
-link_directories(/usr/lib/x86_64-linux-gnu)
+#link_directories(/usr/lib/x86_64-linux-gnu)
 
 #Generate the C++ for the messages from the libprotobuf markup
 add_subdirectory(./messages)

@@ -297,8 +297,8 @@ return; //No destination virtual port id, so message is invalid
 }
 
 //Set IP and port from the information in the UDP datagram
-messageHeader.set_udpip(udpSenderAddress.sin_addr.s_addr);
-messageHeader.set_udpportnumber(udpSenderAddress.sin_port);
+messageHeader.set_udpip(ntohl(udpSenderAddress.sin_addr.s_addr));
+messageHeader.set_udpportnumber(ntohs(udpSenderAddress.sin_port));
 
 //Forward message if the resulting size is not too large
 int finalCompleteMessageSize = 0;

@@ -52,7 +52,7 @@ return -1;
 }
 SOM_CATCH("Error sending message\n")
 
-//Get it back
+//Get it on other side
 int retrievedMessageContentSize;
 zmq::message_t messageBuffer;
 virtualPortMessageHeader virtualPortMessageHeaderBuffer;
@@ -62,6 +62,24 @@ SOM_CATCH("Error, problem getting the message back\n")
 
 std::string receivedMessage((const char *) messageBuffer.data(), retrievedMessageContentSize);
 printf("Retrieved message: %s\n", receivedMessage.c_str());
+
+//Return to sender
+SOM_TRY
+socket2->send((const char *) messageBuffer.data(), retrievedMessageContentSize, virtualPortMessageHeaderBuffer.udpip(), virtualPortMessageHeaderBuffer.udpportnumber(), virtualPortMessageHeaderBuffer.sendervirtualportid(), virtualPortMessageHeaderBuffer.transactionid()); 
+SOM_CATCH("Error, problem sending echo message\n")
+
+printf("Port to send echo to %u\n", virtualPortMessageHeaderBuffer.udpportnumber());
+
+//Receive echo
+int retrievedMessageContentSize2;
+zmq::message_t messageBuffer2;
+virtualPortMessageHeader virtualPortMessageHeaderBuffer2;
+SOM_TRY
+retrievedMessageContentSize2 = socket1->recv(messageBuffer2, virtualPortMessageHeaderBuffer2);
+SOM_CATCH("Error, problem getting the echo message back\n")
+
+std::string receivedMessage2((const char *) messageBuffer2.data(), retrievedMessageContentSize2);
+printf("Retrieved echo message: %s\n", receivedMessage2.c_str());
 
 return 0;
 }

@@ -3,9 +3,8 @@ import "commonEnums.proto";
 
 message predecessorRequestResponse
 {
-required uint64 messageID = 1; //A number identifying the message so that it doesn't get mixed with other messages when the response is returned
-required bytes responder_chord_id = 2; //A 512 bit chord ID
-required bytes predecessor_chord_id = 3;  //A 512 bit chord ID
+required bytes sender_chord_id = 1; //A 512 bit chord ID
+required bytes predecessor_chord_id = 2;  //A 512 bit chord ID
 
 //Add to message container to allow simulated polymorphism
 extend messageContainer

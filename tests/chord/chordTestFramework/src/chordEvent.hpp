@@ -9,7 +9,8 @@ enum chordEventType
 UNINITIALIZED = 1,
 SEND_STABILIZATION_REQUEST = 2,
 REQUEST_CLOSEST_KNOWN_PREDECESSOR_MAY_HAVE_TIMED_OUT = 3,
-UPDATE_FINGER_TABLE = 4
+UPDATE_FINGER_TABLE = 4,
+NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT = 5
 };
 
 /*
@@ -35,6 +36,13 @@ This function makes this event signal a potential timeout event for a closest kn
 @param inputRequestNumber: The request number associated with the request
 */
 void createClosestKnownPredecessorTimeoutEvent(std::chrono::milliseconds inputDelay, uint64_t inputRequestNumber);
+
+/*
+This function makes this event signal a potential timeout event for a node is active request, triggering a check to see if the reply for the request has been received and resending if not.
+@param inputDelay: How long to wait (in milliseconds) before triggering
+@param inputRequestNumber: The request number associated with the request
+*/
+void createNodeIsActiveTimeoutEvent(std::chrono::milliseconds inputDelay, uint64_t inputRequestNumber);
 
 /*
 This function makes this event trigger sending out a request to update a particular member of the fingerTable.

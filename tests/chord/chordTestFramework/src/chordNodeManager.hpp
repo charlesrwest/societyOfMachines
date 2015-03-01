@@ -35,11 +35,11 @@ chordNodeManager(std::string inputInprocAddressForPauseResumeSignals);
 
 /*
 This function creates a new chord node object/process.  The created node is fully initialized once the promise returns its result.  Any exceptions that occurred as part of the initialization are thrown when the promise is queried for its result
-@param inputChordNodeContactInformation: The contact info of a node that the chord node can use to enter the network
+@param inputChordNetworkContactInformation: The contact info of a nodes that the chord node can use to enter the network
 @return: This function returns the port number associated with the node or throws an exception
 @exception: This function can throw SOMExceptions if something goes wrong
 */
-uint32_t createChordNode(const chordNodeContactInformation &inputChordNodeContactInformation);
+uint32_t createChordNode(const std::vector<chordNodeContactInformation> &inputChordNetworkContactInformation);
 
 /*
 This function publishes the pause signal, then waits until all of the nodes have emitted the pausing signal.
@@ -66,6 +66,8 @@ std::unique_ptr<zmq::socket_t> pauseResumeSignalSocket;  //ZMQ inproc socket to 
 std::unique_ptr<zmq::socket_t> pauseResumeSignalAckSocket;  //ZMQ inproc socket to receive pause acknowledgements
 
 std::map<uint32_t, std::unique_ptr<chordNode> > chordRingIDToNode; //A list of all of the chord nodes
+
+std::vector<chordNodeContactInformation> nodeContactInfos;
 
 std::string inprocAddressForPauseResumeSignals;
 

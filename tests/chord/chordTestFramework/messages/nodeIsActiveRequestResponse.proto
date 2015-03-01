@@ -1,0 +1,16 @@
+import "messageContainer.proto";
+import "commonEnums.proto";
+import "chordNodeContactInformation.proto";
+
+//This message is used to check if a node is still active (generally verifying stale entries)
+
+message nodeIsActiveRequestResponse
+{
+required chordNodeContactInformation sender_contact_info = 1;
+
+//Add to message container to allow simulated polymorphism
+extend messageContainer
+{
+optional nodeIsActiveRequestResponse aNodeIsActiveRequestResponse = 19;
+}
+}

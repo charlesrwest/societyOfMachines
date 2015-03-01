@@ -80,6 +80,56 @@ An alternate proposal is to have each chord node response give the best two node
 A potential way to deal with that is to keep a count of how many bad directions a node has given and exclude a node after it has given a certain number of bad paths.  This would make the number of nodes required to misdirect and cause a failure become much larger.
 
 So a reasonable way to do it would be to have the following:
-Each requestClosestKnownPredecessor request will have a certain number of closest known predecessors (probably 2 for the first design).  Each retrieved predecessor info will be entered in a queue.  Upon sending a request to a node, each contact info will be entered into a stack.  Each contact info will also be placed in three maps.  The first map (contactInfo->contactInfo) keeps track of which node suggested a particular node.  The second map (contactInfo->resendCount) will contain the number of times the request has been resent to the node.  If the resend number reaches a certain amount, the node contact info will be removed from the stack and not added again. The third map (contactInfo->badReferenceCount) keeps track of how many bad directions a node has given on this request (incremented when a node it suggested exceeds the resend count limit or it suggests one that has already reached the limit again).  If the badReferenceCount limit is exceeded, then the node is removed from the stack and not added again.  If the stack becomes empty or a time limit is reached, the request returns with error.
+Each requestClosestKnownPredecessor request will have a certain number of closest known predecessors (probably 2 for the first design).  Each retrieved predecessor info will be entered in a stack.  Upon sending a request to a node, each contact info will be entered into a stack.  Each contact info will also be placed in three maps.  The first map (contactInfo->contactInfo) keeps track of which node suggested a particular node.  The second map (contactInfo->resendCount) will contain the number of times the request has been resent to the node.  If the resend number reaches a certain amount, the node contact info will be removed from the stack and not added again. The third map (contactInfo->badReferenceCount) keeps track of how many bad directions a node has given on this request (incremented when a node it suggested exceeds the resend count limit or it suggests one that has already reached the limit again).  If the badReferenceCount limit is exceeded, then the node is removed from the stack and not added again.  If the stack becomes empty or a time limit is reached, the request returns with error.
 
-The finger
+The finger table class starts with all of the entries pointing to the node that owns the finger table.  The node would just talk to itself except for the fact that it registers a request to find who owns its chord ID address (so it can set that to its successor) as well as all finger table target address and attempts to add all known chord nodes to its finger tables.  As the requests come back, successors, predecessors and the finger table should all be updated as new/better entries come in.  In the case that the resent amount runs out on a chord node, it will be replaced in the finger table by its successor.  Nodes marked stale can be inserted normally into the finger table, but later additions will take immediate priority over them (replace them, even if they are less good).  
+
+So the normal initializion of the node will consist of the following steps:
+1. All of the finger table entries are set to its own chord ID/contact info.
+2. All cached finger table entries from previous sessions will be added to the finger tables with (most likely with the "isStale" field set true).  This will likely replace many of the own chord ID entries.
+
+3. Place a nodeIsActiveRequest message generating event for each contactInfo given to the node (which adds them as a non-stale entry upon response)
+4. Place a findAddressOwnerRequest generating event for its own chord ID and each of its finger table entries (reoccuring for the finger table entries).
+5. Place event to generate stabilization requests (reoccuring).
+
+I've been thinking about it and there seems no reason that the encrypted multichord ring network couldn't be its own thing.  Its job is just to connect to the network and resolve the contact details associated the owner of a particular address.  There appears to be no reason why it couldn't stand on its own as a sub component/seperate library.  In fact, I think the seperation would make testing a lot easier.
+
+Node 6: Self ID: 601
+Predecessor ID: 12122
+Successor ID: 3457
+
+Node 1: Self ID: 3457
+Predecessor ID: 601
+Successor ID: 4373
+
+Node 5: Self ID: 4373
+Predecessor ID: 3457
+Successor ID: 4838
+
+Node 4: Self ID: 4838
+Predecessor ID: 4373
+Successor ID: 7563
+
+Node 3: Self ID: 7563
+Predecessor ID: 4838
+Successor ID: 7747
+
+Node 0: Self ID: 7747
+Predecessor ID: 7563
+Successor ID: 9476
+
+Node 8: Self ID: 9476
+Predecessor ID: 7747
+Successor ID: 9803
+
+Node 7: Self ID: 9803
+Predecessor ID: 9476
+Successor ID: 10430
+
+Node 9: Self ID: 10430
+Predecessor ID: 9803
+Successor ID: 12122
+
+Node 2: Self ID: 12122
+Predecessor ID: 10430
+Successor ID: 601

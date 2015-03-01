@@ -31,6 +31,18 @@ eventTime = std::chrono::steady_clock::now() + inputDelay;
 }
 
 /*
+This function makes this event signal a potential timeout event for a node is active request, triggering a check to see if the reply for the request has been received and resending if not.
+@param inputDelay: How long to wait (in milliseconds) before triggering
+@param inputRequestNumber: The request number associated with the request
+*/
+void chordEvent::createNodeIsActiveTimeoutEvent(std::chrono::milliseconds inputDelay, uint64_t inputRequestNumber)
+{
+eventType = NODE_IS_ACTIVE_REQUEST_MAY_HAVE_TIMED_OUT;
+integerOptions.push_back(inputRequestNumber);
+eventTime = std::chrono::steady_clock::now() + inputDelay;
+}
+
+/*
 This function makes this event trigger sending out a request to update a particular member of the fingerTable.
 @param inputDelay: How long to wait (in milliseconds) before triggering
 @param inputFingerTableIndex: Which finger table entry to update

@@ -38,14 +38,56 @@ This function returns the contact infos (including binary ID) of the closest cho
 std::vector<chordNodeContactInformation> getClosestPredecessors(const boost::multiprecision::uint512_t &inputChordAddress, unsigned int inputNumberOfNodesToReturn);
 
 /*
+This function returns the contact infos (including binary ID) of the closest chord nodes that are > than the given chord address (useful for finding the next best table entry when one goes out of date).
+@param inputChordAddress: The chord address to find successors for
+@return: A list of chord node contact infos, in order of closeness (closest to target first)
+
+@exceptions: This function can throw exceptions
+*/
+std::vector<chordNodeContactInformation> getClosestSuccessors(const boost::multiprecision::uint512_t &inputChordAddress, unsigned int inputNumberOfNodesToReturn);
+
+/*
 This function takes a chord ID and checks if it is a better fit than one of the current best match entries (replacing the best match if so).  If a entry is closer to its upper_bound in the table than the corresponding entry in the best matches table, it replaces the entry in the best matches table.
 @param inputChordNodeContactInfo: The chord info to test
 */
 void checkAndUpdateIfBetter(const chordNodeContactInformation &inputChordNodeContactInfo);
 
-boost::multiprecision::uint512_t chordID;  //The ID of this node
+/*
+This function replaces the given node with the next best option in all finger table entries it is used in (unless it is this node's ID, in which case it does nothing).
+@param inputChordNodeContactInfo: The chord info to remove TODO: Make this function
+*/
+void replaceWithNextBestOption(const chordNodeContactInformation &inputChordNodeContactInfo);
 
-private:
+/*
+This function returns the number of entries in the finger table (number of target addresses).
+@return: The number of entries in the finger table
+*/
+uint64_t fingerTableSize();
+
+/*
+This function returns the contact information associated with this node.
+@return: The contact info associated with this node (from its perspective)
+
+@exceptions: This function can throw an exception if the associated contact info cannot be found (some sort of internal error making the state invalid)
+*/
+chordNodeContactInformation selfContactInfo();
+
+/*
+This function returns the contact information associated with this node's predecessor.
+@return: The contact info associated with this node (from its perspective)
+
+@exceptions: This function can throw an exception if the associated contact info cannot be found (some sort of internal error making the state invalid)
+*/
+chordNodeContactInformation predecessorContactInfo();
+
+/*
+This function returns the contact information associated with this node's successor.
+@return: The contact info associated with this node (from its perspective)
+
+@exceptions: This function can throw an exception if the associated contact info cannot be found (some sort of internal error making the state invalid)
+*/
+chordNodeContactInformation successorContactInfo();
+
 /*
 Update the best chord address match.  The index corresponds to the entry number of the bestChordAddressMatches.  This is the only way that the finger table entries should be updated.  Invalid chordNodeContactInformations are silently ignored.
 @param inputIndexNumber: A bounds checked index number
@@ -54,6 +96,22 @@ Update the best chord address match.  The index corresponds to the entry number 
 @exceptions: An exception is thrown if the index is out of bounds
 */
 void updateChordMatch(int inputIndexNumber, const chordNodeContactInformation &inputChordNodeContactInfo);
+
+/*
+This function give a string that has a text summary of the values of the finger table values (primarily used for debugging).
+@return: A text report with the self/predecessor/successor/finger table values
+*/
+std::string getFingerTableSummary();
+
+boost::multiprecision::uint512_t chordID;  //The ID of this node
+//Where the fingers are suppose to find best matches for
+std::vector<boost::multiprecision::uint512_t> targetChordAddresses;//Don't modify except using member functions
+std::vector<std::string> targetChordAddressesInBinary; //The binary version of the target chord addresses
+boost::multiprecision::uint512_t predecessorID;  //The predecessor of this node (don't modify except through member functions)
+boost::multiprecision::uint512_t successorID;  //The successor of this node (don't modify except through member functions)
+
+private:
+
 
 /*
 Update the best chord address match.  This is the only way that the predecessor entry should be updated.  Invalid chordNodeContactInformations are silently ignored.
@@ -91,12 +149,7 @@ This function is used to update the std::set and std::map that is used to answer
 */
 void replaceQueryNodeInfo(const boost::multiprecision::uint512_t &inputNodeToRemove, const chordNodeContactInformation &inputNodeToAddContactInfo);
 
-//Where the fingers are suppose to find best matches for
-std::vector<boost::multiprecision::uint512_t> targetChordAddresses;
-std::vector<std::string> targetChordAddressesInBinary; //The binary version of the target chord addresses
 
-boost::multiprecision::uint512_t predecessorID;  //The predecessor of this node
-boost::multiprecision::uint512_t successorID;  //The successor of this node
 
 //The current best matches and their associated contact infos
 std::vector<boost::multiprecision::uint512_t> bestChordAddressMatchIDs;

@@ -41,20 +41,21 @@ printf("%.2X", hashBuffer[i]);
 printf("\n");
 
 
+//Make big int out of hash
 boost::multiprecision::uint512_t bigInteger;
-
 if(createUInt512FromRawHash((const char *) hashBuffer, crypto_hash_sha512_BYTES, bigInteger) != 1)
 {
 fprintf(stderr, "Error setting integer with raw hash\n");
 return -1;
 }
 
+//Make hex string from big int
 std::string hexVersionOfHash = convertBinaryToHexString((const char *) hashBuffer, crypto_hash_sha512_BYTES);
 
 //First argument doesn't seem to be used, prints without leading 0x.  Also always seems to use upper case
 printf("Current value of bigint: \n0x%s\n", bigInteger.str(-1,std::ios::hex).c_str());
 
-printf("Passed argument: \n0x");
+printf("hexVersionOfHash: \n0x");
 for(int i=0; i<hexVersionOfHash.size()-2; i++)
 {
 printf("%c", *(hexVersionOfHash.c_str()+2+i));
@@ -69,13 +70,27 @@ fprintf(stderr, "Error converting hex to binary\n");
 return -1;
 }
 
-printf("Binary conversion result: \n0x");
+printf("Hex to binary conversion result: \n0x");
 
 for(int i=0; i<crypto_hash_sha512_BYTES; i++)
 {
 printf("%.2X", hashBuffer2[i]);
 }
 
+printf("\n");
+
+//Test big int to binary hash conversion
+unsigned char hashBuffer4[crypto_hash_sha512_BYTES];
+if(createRawHashFromUInt512(bigInteger, (char *) hashBuffer4, crypto_hash_sha512_BYTES) != 1)
+{
+printf("Failed to convert big int to binary hash\n");
+}
+
+printf("Big int to binary conversion result: \n0x");
+for(int i=0; i<crypto_hash_sha512_BYTES; i++)
+{
+printf("%.2X", hashBuffer4[i]);
+}
 printf("\n");
 
 

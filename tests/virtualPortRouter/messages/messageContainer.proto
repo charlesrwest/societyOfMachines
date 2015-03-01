@@ -5,8 +5,10 @@
 //aPredecessorRequestResponse 14
 //aClosestPredecessorRequest 15
 //aClosestPredecessorRequestResponse 16
-//aInformationRequest 17
-//aInformationRequestResponse 18
+//aStabilizationRequestOrResponse 17
+//aFindAddressOwnerRequestOrResponse 18
+//aNodeIsActiveRequestResponse 19
+
 
 //This message contains no fields but has a large extension option range so that any new messages can add its definition to it as an optional or repeated message member.
 message messageContainer

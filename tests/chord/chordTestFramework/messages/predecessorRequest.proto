@@ -3,7 +3,7 @@ import "commonEnums.proto";
 
 message predecessorRequest
 {
-required bytes requester_chord_id = 1;  //A 512 bit chord ID
+required bytes sender_chord_id = 1;  //A 512 bit chord ID
 
 //Add to message container to allow simulated polymorphism
 extend messageContainer

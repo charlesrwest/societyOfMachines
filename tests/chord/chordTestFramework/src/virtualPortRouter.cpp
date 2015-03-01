@@ -297,8 +297,8 @@ return; //No destination virtual port id, so message is invalid
 }
 
 //Set IP and port from the information in the UDP datagram
-messageHeader.set_udpip(udpSenderAddress.sin_addr.s_addr);
-messageHeader.set_udpportnumber(udpSenderAddress.sin_port);
+messageHeader.set_udpip(ntohl(udpSenderAddress.sin_addr.s_addr));
+messageHeader.set_udpportnumber(ntohs(udpSenderAddress.sin_port));
 
 //Forward message if the resulting size is not too large
 int finalCompleteMessageSize = 0;
@@ -395,10 +395,10 @@ targetAddress.sin_port = htons(UDPPortToSendTo);
 targetAddress.sin_addr.s_addr=htonl(IPToSendTo);
 
 
-
-if(sendto(parentVirtualPortRouter->datagramSocketFileDescriptor, udpMessageBuffer, finalCompleteMessageSize, 0, (struct sockaddr *) &targetAddress, sizeof(targetAddress)) < finalCompleteMessageSize)
+int returnValue = sendto(parentVirtualPortRouter->datagramSocketFileDescriptor, udpMessageBuffer, finalCompleteMessageSize, 0, (struct sockaddr *) &targetAddress, sizeof(targetAddress));
+if(returnValue < finalCompleteMessageSize)
 {
-throw SOMException(std::string("Error sending UDP message\n"), SYSTEM_ERROR, __FILE__, __LINE__);
+throw SOMException(std::string("Error sending UDP message (return value: " + std::to_string(returnValue) + ", errno: " + std::to_string(errno) + ")\n"), SYSTEM_ERROR, __FILE__, __LINE__);
 }
 
 }

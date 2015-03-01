@@ -15,7 +15,7 @@ link_directories(/usr/lib/x86_64-linux-gnu)
 add_subdirectory(./messages)
 
 #Tell the subprojects where to find the created static library and headers
-include_directories(./messages ./src/ /home/hewhosurvives/c++/libraries/cppzmq-master/ )
+include_directories(./messages ./src/ ../../../IPCOnlyVersion/cppzmq-master/ )
 
 link_directories(./messages)
 

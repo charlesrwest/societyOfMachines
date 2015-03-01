@@ -1,0 +1,11 @@
+//Ordering of known virtual ports on a chord node relative to its base virtual port
+//For now, each chord node will start with a 0 base address
+
+Socket                                                 Offset
+
+nodeIsActiveRequestHandler                               0
+stabilizationRequestHandler                              1
+closestKnownPredecessorRequestsHandler                   2
+nodeIsActiveRequestSender                                3
+stabilizationRequestSender                               4
+closestPredecessorRequestSender                          5

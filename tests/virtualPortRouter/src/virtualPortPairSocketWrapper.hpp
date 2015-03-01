@@ -61,7 +61,7 @@ This function allows the sender to send a datagram to a virtual port on another 
 
 @exceptions: This function can throw exceptions
 */
-int send(const void *inputData, size_t inputDataLength, uint32_t inputDestinationIPAddress, uint16_t inputDestinationPort, uint32_t inputDestinationVirtualPort, uint64_t inputTransactionID, int inputFlags = 0);
+int send(const void *inputData, size_t inputDataLength, uint32_t inputDestinationIPAddress, uint16_t inputDestinationPort, uint32_t inputDestinationVirtualPort, uint64_t inputTransactionID = 0, int inputFlags = 0);
 
 /*
 This function wraps the recv operation on the pair socket and seperates the data from the (tail) header.

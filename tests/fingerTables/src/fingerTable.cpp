@@ -118,6 +118,47 @@ closestPredecessors.push_back(idToContactInfo[lastBestMatch]);
 return closestPredecessors;
 }
 
+/*
+This function returns the contact infos (including binary ID) of the closest chord nodes that are > than the given chord address (useful for finding the next best table entry when one goes out of date).
+@param inputChordAddress: The chord address to find successors for
+@return: A list of chord node contact infos, in order of closeness (closest to target first)
+
+@exceptions: This function can throw exceptions
+*/
+std::vector<chordNodeContactInformation> fingerTable::getClosestSuccessors(const boost::multiprecision::uint512_t &inputChordAddress, unsigned int inputNumberOfNodesToReturn)
+{
+if(inputNumberOfNodesToReturn == 0)
+{
+return std::vector<chordNodeContactInformation>(); //Return empty vector
+}
+
+boost::multiprecision::uint512_t lastBestMatch = inputChordAddress;
+std::vector<chordNodeContactInformation> closestSuccessors;
+std::set<boost::multiprecision::uint512_t>::iterator closestSuccessorIterator;
+
+while(closestSuccessors.size() < inputNumberOfNodesToReturn)
+{
+//Check all nodes we have info for to find closest predecessor ID (returning the associated iterator)
+closestSuccessorIterator = std::upper_bound(knownIDs.begin(), knownIDs.end(), lastBestMatch);
+
+//Check to make sure the result is modulo correct
+if(lastBestMatch >= (*closestSuccessorIterator))
+{
+//The target address is larger than the largest value in the finger table, so it wraps around (making the closest predecessor the lowest value in the set)
+lastBestMatch = *knownIDs.begin();  //Highest entry
+}
+else
+{
+lastBestMatch = (*closestSuccessorIterator);
+}
+
+closestSuccessors.push_back(idToContactInfo[lastBestMatch]);
+
+} //End while loop
+
+return closestSuccessors;
+}
+
 
 /*
 This function takes a chord ID and checks if it is a better fit than one of the current best match entries (replacing the best match if so).  If a entry is closer to its upper_bound in the table than the corresponding entry in the best matches table, it replaces the entry in the best matches table.
@@ -140,12 +181,26 @@ if(createUInt512FromRawHash(inputChordNodeContactInfo.chord_id().c_str(), inputC
 return; //Couldn't make int from array
 }
 
+//Check if the input information is stale (possibly no longer valid)
+bool inputNodeIsStale = false;
+if(inputChordNodeContactInfo.has_is_stale())
+{
+inputNodeIsStale = inputChordNodeContactInfo.is_stale();
+}
 
 //Update each finger table entry (could be potentially optimized)
 for(auto targetIterator = targetChordAddresses.begin(); targetIterator != targetChordAddresses.end(); targetIterator++)
 {
-//Check if the given address is closer to the target than the current entry
-if(((*targetIterator) - bestChordAddressMatchIDs[targetIterator - targetChordAddresses.begin()]) > ((*targetIterator) - inputChordID))
+auto currentBestMatchID = bestChordAddressMatchIDs[targetIterator - targetChordAddresses.begin()];
+
+bool currentBestMatchIsStale = false;
+if(idToContactInfo[currentBestMatchID].has_is_stale())
+{
+currentBestMatchIsStale = idToContactInfo[currentBestMatchID].is_stale();
+}
+
+//Check if the given address is closer to the target than the current entry or less stale
+if((((*targetIterator) - currentBestMatchID) > ((*targetIterator) - inputChordID)) || (currentBestMatchIsStale && !inputNodeIsStale))
 {
 //New id is better
 bestChordAddressMatchIDs[targetIterator - targetChordAddresses.begin()] = inputChordID;
